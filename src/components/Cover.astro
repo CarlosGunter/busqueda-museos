@@ -1,0 +1,27 @@
+---
+interface CoverProps {
+  image: string
+  title: string  
+}
+const { image, title } = Astro.props
+---
+
+<div class="relative w-full h-90 grid place-items-center overflow-hidden">
+  <img
+    class="
+      absolute -z-10 h-90
+      brightness-60 object-cover
+      transition-all duration-150
+      "
+    src={image}
+    alt={`Imagen de ${title}`}
+    fetchpriority="high"
+  />
+  <h1 class="text-5xl font-bold text-white text-center">{title}</h1>
+</div>
+
+<style>
+  div:hover > img {
+    @apply scale-120 brightness-75;
+  }
+</style>
