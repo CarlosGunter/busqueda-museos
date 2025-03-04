@@ -3,6 +3,7 @@ import '@styles/global.css';
 import background from '@assets/background.svg';
 import Cover from '@/components/Cover.astro';
 import cover from '@assets/cover.webp';
+import Form from '@/functional-components/Form';
 ---
 
 <!doctype html>
@@ -14,15 +15,16 @@ import cover from '@assets/cover.webp';
 		<meta name="generator" content={Astro.generator} />
 		<title>Museos CDMX</title>
 	</head>
-	<body class="scheme-dark">
-		<!-- <img
+	<body>
+		<img
 			class="fixed top-0 left-0 h-full -z-10 blur-2xl"
 			id="background"
 			src={background.src}
 			alt=""
 			fetchpriority="high"
-		/> -->
+		/>
 		<Cover image={cover.src} title="Museos CDMX" />
+		<Form client:load />
 		<slot />
 	</body>
 </html>
