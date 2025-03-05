@@ -3,7 +3,8 @@ import '@styles/global.css';
 import background from '@assets/background.svg';
 import Cover from '@/components/Cover.astro';
 import cover from '@assets/cover.webp';
-import Form from '@/functional-components/Form';
+import Form from '@f-components/Form';
+import FormAlt from '@f-components/FormAlt';
 ---
 
 <!doctype html>
@@ -24,7 +25,8 @@ import Form from '@/functional-components/Form';
 			fetchpriority="high"
 		/>
 		<Cover image={cover.src} title="Museos CDMX" />
-		<Form client:load />
+		<!-- <Form client:load /> -->
+		<FormAlt client:load />
 		<slot />
 	</body>
 </html>

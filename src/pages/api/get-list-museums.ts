@@ -12,14 +12,14 @@ export async function GET({ params, request }: getListMuseumsProps) {
   const { url } = request
   const { searchParams } = new URL(url)
   const zone = searchParams.get('zona')
-  const type = searchParams.get('tipo')
+  const teme = searchParams.get('tema')
   const price = searchParams.get('precio')
   // Filtrar los museos por los parámetros de búsqueda
   const filteredData = data.filter((museum) => {
     // Descartar por zona
     if (zone !== 'all' && museum.zone !== zone) return false
-    // Descartar por tipo
-    if (type !== 'all' && museum.type !== type) return false
+    // Descartar por tema
+    if (teme !== 'all' && museum.type !== teme) return false
     // Descartar por precio
     if (
       price !== 'all'
@@ -30,6 +30,7 @@ export async function GET({ params, request }: getListMuseumsProps) {
     // Museo que cumple con los parámetros de búsqueda
     return true
   })
+  console.log(url);
   // Retornar los resultados
   return new Response(JSON.stringify(filteredData), {
     headers: { 'Content-Type': 'application/json' },

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: oklch(72.79% 0.1357 0);
+}
+
 :root {
   color-scheme: dark light;
 }
@@ -14,4 +18,9 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   text-wrap: pretty;
+}
+
+/* Estilos del componente Selector */
+.selector-check-bg:has(>:checked) > label {
+  @apply bg-primary;
 }
