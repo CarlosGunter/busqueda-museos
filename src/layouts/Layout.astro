@@ -4,7 +4,6 @@ import background from '@assets/background.svg';
 import Cover from '@/components/Cover.astro';
 import cover from '@assets/cover.webp';
 import Form from '@f-components/Form';
-import FormAlt from '@f-components/FormAlt';
 ---
 
 <!doctype html>
@@ -25,8 +24,7 @@ import FormAlt from '@f-components/FormAlt';
 			fetchpriority="high"
 		/>
 		<Cover image={cover.src} title="Museos CDMX" />
-		<!-- <Form client:load /> -->
-		<FormAlt client:load />
+		<Form client:load />
 		<slot />
 	</body>
 </html>
