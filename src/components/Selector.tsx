@@ -1,27 +1,50 @@
 import Toggle from '@components/Toggle'
-import { useState } from 'react'
 
 interface SelectorProps {
   options: string[]
   name: string
   title: string
+  isCheckT: boolean
+  toggleControl: (isChecked: boolean) => void
+  selected: string
+  selectControl: (selected: string) => void
 }
 
-export default function Selector({ options, name, title }: SelectorProps) {
+// Genera un selector de opciones vertical con un toggle y sus opciones
+// El toggle habilita/deshabilita el selector
+// @param options: string[] - Opciones del selector
+// @param name: string - Nombre con el que se recupera el valor del selector
+// @param title: string - Texto de la UI que identifica al selector
+// @param isCheckT: boolean - Estado del selector (abilitado/desabilitado)
+// @param selected: string - Opción seleccionada del selector
+export default function Selector({
+  options, name, title, isCheckT, selected, toggleControl, selectControl
+}: SelectorProps) {
 
-  // Estado del toggle
-  const [toggleState, setToggle] = useState(false)
-  // Determina si el checkbox está activado o no
-  // Activado -> Activa el selector
-  // Desactivado -> Desactiva el selector
-  const toggleChange = () => { setToggle(state => !state) }
+  // Funcion que se ejecuta al cambiar de opción en el selector
+  // @param value: string - Valor de la opción seleccionada
+  const handleChange = (value: string) => {
+    selectControl(value)
+    toggleControl(true)
+  }
+  // Funcion que administra el toggle del selector
+  // @param isChecked: boolean - Estado del selector
+  const handleCheck = (isChecked: boolean) => {
+    toggleControl(isChecked)
+    if (isChecked) selectControl(options[0])
+      else selectControl('')
+  }
 
   return (
     <div className="grid gap-1">
-      <Toggle name={`${name}Toggle`} text={title} change={toggleChange} />
+      <Toggle
+        name={name}
+        text={title}
+        isChecked={isCheckT}
+        toggleChange={handleCheck}
+      />
       <div
-      className={`flex justify-around rounded-xl p-1
-        ${toggleState ? 'bg-gray-900' : 'hidden'}`}
+        className={`flex justify-around rounded-xl p-1 bg-gray-900`}
       >
         {options.map((option, i) => (
           <div
@@ -36,10 +59,13 @@ export default function Selector({ options, name, title }: SelectorProps) {
               type="radio"
               name={name}
               value={option}
-              disabled={!toggleState}
+              checked={selected === option}
+              onChange={e => handleChange(e.target.value)}
               className="absolute w-full h-full opacity-0"
             />
-            <label className="w-full p-2 rounded-md text-center">{option}</label>
+            <label className="w-full p-2 rounded-md text-center">
+              {option}
+            </label>
           </div>
         ))}
       </div>

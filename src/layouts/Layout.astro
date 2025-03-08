@@ -24,8 +24,10 @@ import Form from '@f-components/Form';
 			fetchpriority="high"
 		/>
 		<Cover image={cover.src} title="Museos CDMX" />
-		<Form client:load />
-		<slot />
+		<div class="mx-auto px-2">
+			<Form client:load />
+			<slot />
+		</div>
 	</body>
 </html>
 
