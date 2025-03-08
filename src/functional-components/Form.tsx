@@ -16,6 +16,7 @@ function Form() {
   const { 
     zoneToggle, zone, theme, daysToggle, days, priceToggle
   } = useFormStore(state => (state))
+  // Funciones para modificar el estado global del formulario
   const {
     setZoneToggle, setZone, setTheme, setDaysToggle, setDays, defaultDays, setPriceToggle
   } = useFormStore(state => (state))
@@ -31,7 +32,6 @@ function Form() {
       const currentZone = formData.get('zonasToggle') === 'on'
         ? formData.get('zonas') || 'all'
         : 'all'
-      // const zonas = formData.get('zonas')
       const currentTheme = formData.get('tema')
       const selectedDays = formData.getAll('dias')
       const currentPrice = formData.get('precioToggle') === 'on'
@@ -48,7 +48,7 @@ function Form() {
       console.log({ currentZone, currentTheme, selectedDays, currentPrice })
       console.log({ zoneToggle, zone, theme, daysToggle, days, priceToggle })
       // Hacer scroll hacia la lista de museos
-      document.getElementById('list-museums')?.scrollIntoView();
+      window.location.href = '#list-museums'
     })
   }
 
@@ -90,8 +90,9 @@ function Form() {
         <button
           className="place-self-center w-min text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="submit"
+          disabled={isPending}
         >
-          Buscar
+          {isPending ? 'Buscando...' : 'Buscar'}
         </button>
       </form>
     </div>

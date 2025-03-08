@@ -5,9 +5,17 @@ interface SwitchProps {
   toggleChange: (isChecked: boolean) => void
 }
 
-export default function Switch(
-  { name, text, isChecked, toggleChange }: SwitchProps
-) {
+// Genera un toggle con un texto y un switch
+// @param name: string - Nombre con el que se recupera el valor del toggle
+// @param text: string - Texto de la UI que identifica al toggle
+// @param isChecked: boolean - Estado del toggle (habilitado/deshabilitado)
+// @param toggleChange - Función que administra el toggle
+export default function Switch({
+  name,
+  text,
+  isChecked,
+  toggleChange
+}: SwitchProps) {
 
   return (
     <label className="flex justify-between gap-2 cursor-pointer">

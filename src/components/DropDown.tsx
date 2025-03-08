@@ -6,9 +6,19 @@ interface DropDownProps {
   onChange: (selected: string) => void
 }
 
-export default function DropDown(
-  { options, name, title, selected, onChange }: DropDownProps
-) {
+// Componente para un selector de opciones
+// @param options: string[] - Opciones del selector
+// @param name: string - Nombre con el que se recupera el valor del selector
+// @param title: string - Texto de la UI que identifica al selector
+// @param selected: string - Opción seleccionada del selector
+// @param onChange - Función que se ejecuta al cambiar de opción en el selector
+export default function DropDown({
+  options,
+  name,
+  title,
+  selected,
+  onChange
+}: DropDownProps) {
   return (
     <label className="flex justify-between gap-2">
       <span className="font-bold flex items-center">{title}</span>

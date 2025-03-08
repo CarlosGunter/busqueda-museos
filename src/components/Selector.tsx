@@ -15,10 +15,16 @@ interface SelectorProps {
 // @param options: string[] - Opciones del selector
 // @param name: string - Nombre con el que se recupera el valor del selector
 // @param title: string - Texto de la UI que identifica al selector
-// @param isCheckT: boolean - Estado del selector (abilitado/desabilitado)
+// @param isCheckT: boolean - Estado del selector (habilitado/deshabilitado)
 // @param selected: string - Opción seleccionada del selector
 export default function Selector({
-  options, name, title, isCheckT, selected, toggleControl, selectControl
+  options,
+  name,
+  title,
+  isCheckT,
+  selected,
+  toggleControl,
+  selectControl
 }: SelectorProps) {
 
   // Funcion que se ejecuta al cambiar de opción en el selector

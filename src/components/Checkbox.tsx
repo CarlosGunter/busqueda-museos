@@ -11,26 +11,51 @@ interface SelectorProps {
   defaultSelected: Set<string>
 }
 
-export default function Checkbox(
-  { options, name, title, isCheckT, toggleControl, selected, selectControl, defaultSelected }: SelectorProps
-) {
+// Genera un selector multiple de opciones vertical con un toggle y sus opciones
+// El toggle habilita/deshabilita el selector
+// @param options: string[] - Opciones del selector
+// @param name: string - Nombre con el que se recupera el valor del selector
+// @param title: string - Texto de la UI que identifica al selector
+// @param isCheckT: boolean - Estado del selector (habilitado/deshabilitado)
+// @param toggleControl - Función que administra el toggle del selector
+// @param selected: Set<string> - Opciones seleccionadas del selector
+// @param selectControl - Función que administra las opciones del selector
+// @param defaultSelected: Set<string> - Opciones seleccionadas por defecto
+export default function Checkbox({
+  options,
+  name,
+  title,
+  isCheckT,
+  toggleControl,
+  selected,
+  selectControl,
+  defaultSelected
+}: SelectorProps) {
 
   // Funcion que se ejecuta al cambiar los valores del selector
   // @param value: string - Valor de la opción seleccionada
   const handleChange = (value: string) => {
     let newSelected: Set<string> = new Set(selected)
+    // Agega/elimina la opción seleccionada
     isCheckT && newSelected.has(value)
-      ? newSelected.delete(value)
-      : newSelected.add(value)
+      ? newSelected.delete(value) // Elimina
+      : newSelected.add(value) // Agrega
+    // Si el toggle esta desactivado, selecciona solo la opción seleccionada
     if (!isCheckT) newSelected = new Set([value])
+    // Si no hay opciones seleccionadas, setea las opciones por defecto
     if (newSelected.size === 0) {
-      toggleControl(false)
-      defaultSelected.forEach(value => newSelected.add(value))
+      defaultSelected.forEach(value => newSelected.add(value)) // Resetea
+      toggleControl(false) // Desactiva el toggle
+    // Si hay al mnenos una opción seleccionada, activa el toggle
     } else toggleControl(true)
+    // Si todas las opciones estan seleccionadas, desactiva el toggle
+    // y evita que el estado tenga todas las opciones ya que
+    // seria lo mismo que tener el toggle desactivado
     if (newSelected.size === options.length) {
       toggleControl(false)
       return
     }
+    // Actualiza el estado con las opciones seleccionadas
     selectControl(newSelected)
   }
 
