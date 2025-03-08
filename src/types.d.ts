@@ -10,7 +10,7 @@ export interface TestMuseo {
   address: string
   zone: string
   type: string
-  days: string
+  days: string[]
   schedule: Array<string>
   price: {
     regular: number
