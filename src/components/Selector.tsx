@@ -31,7 +31,6 @@ export default function Selector({
   // @param value: string - Valor de la opción seleccionada
   const handleChange = (value: string) => {
     // Si se deselecciona la opción, resetea el selector
-    console.log({ selected, value })
     if (selected === value) {
       toggleControl(false) // Desactiva el toggle
       selectControl(options[0]) // Selecciona la primera opción
