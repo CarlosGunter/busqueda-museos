@@ -30,15 +30,16 @@ export default function Selector({
   // Funcion que se ejecuta al cambiar de opción en el selector
   // @param value: string - Valor de la opción seleccionada
   const handleChange = (value: string) => {
-    selectControl(value)
-    toggleControl(true)
-  }
-  // Funcion que administra el toggle del selector
-  // @param isChecked: boolean - Estado del selector
-  const handleCheck = (isChecked: boolean) => {
-    toggleControl(isChecked)
-    if (isChecked) selectControl(options[0])
-      else selectControl('')
+    // Si se deselecciona la opción, resetea el selector
+    console.log({ selected, value })
+    if (selected === value) {
+      toggleControl(false) // Desactiva el toggle
+      selectControl(options[0]) // Selecciona la primera opción
+      return // Sale de la función
+    }
+    // Selecciona la opción
+    selectControl(value) // Selecciona la opción
+    toggleControl(true) // Activa el toggle
   }
 
   return (
@@ -47,7 +48,7 @@ export default function Selector({
         name={name}
         text={title}
         isChecked={isCheckT}
-        toggleChange={handleCheck}
+        toggleChange={toggleControl}
       />
       <div
         className={`flex justify-around rounded-xl p-1 bg-gray-900`}
@@ -65,7 +66,7 @@ export default function Selector({
               type="radio"
               name={name}
               value={option}
-              checked={selected === option}
+              checked={isCheckT && selected === option}
               onChange={e => handleChange(e.target.value)}
               className="absolute w-full h-full opacity-0"
             />

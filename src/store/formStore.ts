@@ -20,7 +20,7 @@ interface FormStore {
 export const useFormStore = create<FormStore>((set) => ({
   zoneToggle: false,
   setZoneToggle: (zoneToggle) => set({ zoneToggle }),
-  zone: '',
+  zone: 'Norte',
   setZone: (zone) => set({ zone }),
   theme: 'all',
   setTheme: (theme) => set({ theme }),
