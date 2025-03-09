@@ -14,7 +14,7 @@ export async function GET({ request }: getListMuseumsProps) {
   const zone = searchParams.get('zona')
   const theme = searchParams.get('tema')
   const days = searchParams.get('dias') !== 'all'
-    ? searchParams.get('dias')?.split(';') || 'all'
+    ? searchParams?.get('dias')?.split(';') || 'all'
     : 'all'
   const price = searchParams.get('precio')
   // Filtrar los museos por los parámetros de búsqueda
@@ -37,7 +37,8 @@ export async function GET({ request }: getListMuseumsProps) {
     // Museo que cumple con los parámetros de búsqueda
     return true
   })
-  console.log({days})
+  console.log(url)
+  console.log({ days })
   // Retornar los resultados
   return new Response(JSON.stringify(filteredData), {
     headers: { 'Content-Type': 'application/json' },

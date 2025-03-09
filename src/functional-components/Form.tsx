@@ -30,17 +30,22 @@ function Form() {
       const formData = new FormData(e.currentTarget)
       // Obtener los valores de los campos del formulario
       const currentZone = formData.get('zonasToggle') === 'on'
-        ? formData.get('zonas') || 'all'
+        ? formData.get('zonas')?.toString() || 'all'
         : 'all'
-      const currentTheme = formData.get('tema')
+      const currentTheme = formData.get('tema')?.toString() || 'all'
       const selectedDays = formData.get('diasToggle') === 'on'
-        ? Array.from(formData.getAll('dias'), day => day.toString())
+        ? Array.from(formData.getAll('dias'), day => day.toString()) || []
         : []
       const currentPrice = formData.get('precioToggle') === 'on'
         ? 'gratis'
         : 'all'
       // Obtener los resultados de la búsqueda llamando a la API
-      const params = `zona=${currentZone}&tema=${currentTheme}&precio=${currentPrice}&dias=${selectedDays ? selectedDays.join(';') : 'all'}`
+      const params = new URLSearchParams({
+        zona: currentZone,
+        tema: currentTheme,
+        precio: currentPrice,
+        dias: selectedDays?.length > 0 ? selectedDays.join(';') : 'all'
+      })
       const res = await fetch(`/api/get-list-museums?${params}`)
       const data = await res.json()
       // Actualizar el estado global de la lista de museos
