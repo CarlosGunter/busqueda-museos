@@ -82,6 +82,7 @@ export default function Checkbox({
             <input
               type="checkbox"
               name={name}
+              value={option}
               checked={isCheckT && selected.has(option)}
               onChange={() => handleChange(option)}
               className="absolute w-full h-full opacity-0"

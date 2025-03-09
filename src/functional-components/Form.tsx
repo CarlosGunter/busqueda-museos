@@ -33,18 +33,21 @@ function Form() {
         ? formData.get('zonas') || 'all'
         : 'all'
       const currentTheme = formData.get('tema')
-      const selectedDays = formData.getAll('dias')
+      const selectedDays = formData.get('diasToggle') === 'on'
+        ? Array.from(formData.getAll('dias'), day => day.toString())
+        : []
       const currentPrice = formData.get('precioToggle') === 'on'
         ? 'gratis'
         : 'all'
       // Obtener los resultados de la búsqueda llamando a la API
-      const params = `zona=${currentZone}&tema=${currentTheme}&precio=${currentPrice}`
+      const params = `zona=${currentZone}&tema=${currentTheme}&precio=${currentPrice}&dias=${selectedDays ? selectedDays.join(';') : 'all'}`
       const res = await fetch(`/api/get-list-museums?${params}`)
       const data = await res.json()
       // Actualizar el estado global de la lista de museos
       // con los resultados de la búsqueda
       useListStore.setState({ museums: data })
   
+      console.log(data)
       console.log({ currentZone, currentTheme, selectedDays, currentPrice })
       console.log({ zoneToggle, zone, theme, daysToggle, days, priceToggle })
       // Hacer scroll hacia la lista de museos
