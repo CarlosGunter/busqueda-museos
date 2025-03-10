@@ -1,17 +1,17 @@
-import { useTransition } from 'react'
-import { useListStore } from '@store/listStore'
 import { useFormStore } from '@store/formStore'
 import Checkbox from '@components/Checkbox'
 import DropDown from '@components/DropDown'
 import Selector from '@components/Selector'
 import Switch from '@components/Toggle'
+import { useSubmitForm } from '@/hooks/useSubmitForm'
+import { daysValues, themeValues, zoneValues } from '@/utils/consts'
 
-const zoneValues = ['Norte', 'Sur', 'Poniente', 'Oriente']
-const themeValues = ['Ciencia', 'Arte', 'Historia', 'Cultura']
-const daysValues = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
-// Componente del formulario principal
-// Obtiene los valores: Zona, Tema, Días de servicio, Precio
 function Form() {
+  /**
+   * Componente del formulario principal
+   * Obtiene los valores: Zona, Tema, Días de servicio, Precio
+   * @returns {JSX.Element} - Elemento del formulario
+   */
   // Estado global del formulario
   const { 
     zoneToggle,
@@ -31,45 +31,8 @@ function Form() {
     defaultDays,
     setPriceToggle
   } = useFormStore(state => (state))
-
-  const [isPending, startTransition] = useTransition()
-  // Función que maneja el evento submit del formulario
-  // @param e: React.FormEvent<HTMLFormElement> - Evento del formulario
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    startTransition( async () => {
-      const formData = new FormData(e.currentTarget)
-      // Obtener los valores de los campos del formulario
-      const currentZone = formData.get('zonasToggle') === 'on'
-        ? formData.get('zonas')?.toString() || 'all'
-        : 'all'
-      const currentTheme = formData.get('tema')?.toString() || 'all'
-      const selectedDays = formData.get('diasToggle') === 'on'
-        ? Array.from(formData.getAll('dias'), day => day.toString()) || []
-        : []
-      const currentPrice = formData.get('precioToggle') === 'on'
-        ? 'gratis'
-        : 'all'
-      // Obtener los resultados de la búsqueda llamando a la API
-      const params = new URLSearchParams({
-        zona: currentZone,
-        tema: currentTheme,
-        precio: currentPrice,
-        dias: selectedDays?.length > 0 ? selectedDays.join(';') : 'all'
-      })
-      const res = await fetch(`/api/get-list-museums?${params}`)
-      const data = await res.json()
-      // Actualizar el estado global de la lista de museos
-      // con los resultados de la búsqueda
-      useListStore.setState({ museums: data })
-  
-      console.log(data)
-      console.log({ currentZone, currentTheme, selectedDays, currentPrice })
-      console.log({ zoneToggle, zone, theme, daysToggle, days, priceToggle })
-      // Hacer scroll hacia la lista de museos
-      window.location.href = '#list-museums'
-    })
-  }
+  // Custom hook para manejar el evento submit del formulario
+  const { isPending, handleSubmit } = useSubmitForm()
 
   return (
     <div className="grid place-items-center m-auto max-w-80">
