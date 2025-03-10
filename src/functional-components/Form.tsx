@@ -14,11 +14,22 @@ const daysValues = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sába
 function Form() {
   // Estado global del formulario
   const { 
-    zoneToggle, zone, theme, daysToggle, days, priceToggle
+    zoneToggle,
+    zone,
+    theme,
+    daysToggle,
+    days,
+    priceToggle
   } = useFormStore(state => (state))
   // Funciones para modificar el estado global del formulario
   const {
-    setZoneToggle, setZone, setTheme, setDaysToggle, setDays, defaultDays, setPriceToggle
+    setZoneToggle,
+    setZone,
+    setTheme,
+    setDaysToggle,
+    setDays,
+    defaultDays,
+    setPriceToggle
   } = useFormStore(state => (state))
 
   const [isPending, startTransition] = useTransition()
@@ -62,7 +73,7 @@ function Form() {
 
   return (
     <div className="grid place-items-center m-auto max-w-80">
-      <form onSubmit={handleSubmit} className="grid gap-5 w-full">
+      <form onSubmit={handleSubmit} id='form' className="grid gap-5 w-full">
         <Selector
           options={zoneValues}
           name='zonas'

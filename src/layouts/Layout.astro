@@ -1,9 +1,10 @@
 ---
 import '@styles/global.css';
 import background from '@assets/background.svg';
-import Cover from '@/components/Cover.astro';
+import Cover from '@components/Cover.astro';
 import cover from '@assets/cover.webp';
 import Form from '@f-components/Form';
+import FloatButton from '@components/FloatButton.astro';
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ import Form from '@f-components/Form';
 			alt=""
 			fetchpriority="high"
 		/>
+		<FloatButton />
 		<Cover image={cover.src} title="Museos CDMX" />
 		<div class="mx-auto px-2">
 			<Form client:load />
