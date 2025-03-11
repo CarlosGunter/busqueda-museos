@@ -2,11 +2,20 @@ import { data } from '@/lib/data/test'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
 
+/**
+ * Propiedades de la petición get-list-museums
+ */
 interface getListMuseumsProps {
-  params: Record<string, string>
+  /** Petición de la API */
   request: Request
 }
-// Endpoint para obtener la lista de museos filtrada
+
+/**
+ * Endpoint para obtener la lista de museos filtrada
+ * @async
+ * @returns {Response} Respuesta de la petición con la lista de museos filtrada
+ * @param {getListMuseumsProps} props Propiedades de la petición
+ */
 export async function GET({ request }: getListMuseumsProps) {
   // Obtener los parámetros de búsqueda
   const { url } = request
@@ -22,7 +31,7 @@ export async function GET({ request }: getListMuseumsProps) {
     // Descartar por zona
     if (zone !== 'all' && museum.zone !== zone) return false
     // Descartar por tema
-    if (theme !== 'all' && museum.type !== theme) return false
+    if (theme !== 'all' && museum.theme !== theme) return false
     // Descartar por días
     if (days !== 'all' && !days.some(day => museum.days.includes(day)))
       return false
@@ -37,8 +46,6 @@ export async function GET({ request }: getListMuseumsProps) {
     // Museo que cumple con los parámetros de búsqueda
     return true
   })
-  console.log(url)
-  console.log({ days })
   // Retornar los resultados
   return new Response(JSON.stringify(filteredData), {
     headers: { 'Content-Type': 'application/json' },

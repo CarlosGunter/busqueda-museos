@@ -1,8 +1,12 @@
 ---
+/** Propiedades para el componente Cover */
 interface CoverProps {
+  /** Ruta en URL de la imagen */
   image: string
+  /** Título para la cubierta */
   title: string  
 }
+
 const { image, title } = Astro.props as CoverProps
 ---
 

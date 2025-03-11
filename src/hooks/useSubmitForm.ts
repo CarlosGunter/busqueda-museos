@@ -1,16 +1,21 @@
 import { useListStore } from "@/store/listStore"
 import { useTransition } from "react"
 
+/**
+ * Custom hook para manejar el evento submit del formulario
+ * @returns {isPending: boolean}
+ * @returns {handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void}
+ * @see useListStore
+ */
 export function useSubmitForm() {
-  /**
-   * Custom hook para manejar el evento submit del formulario
-   * @returns {isPending: boolean, handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void}
-   */
   const [isPending, startTransition] = useTransition()
-  // Función que maneja el evento submit del formulario
-  // @param e: React.FormEvent<HTMLFormElement> - Evento del formulario
+
+  /**
+   * Función que maneja el evento submit del formulario
+   * @param e: - Evento submit del formulario
+   */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault() // Ignora el comportamiento por defecto
     startTransition( async () => {
       const formData = new FormData(e.currentTarget)
       // Obtener los valores de los campos del formulario

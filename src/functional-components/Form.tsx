@@ -1,17 +1,24 @@
-import { useFormStore } from '@store/formStore'
-import Checkbox from '@components/Checkbox'
-import DropDown from '@components/DropDown'
-import Selector from '@components/Selector'
-import Switch from '@components/Toggle'
+import { useFormStore } from '@/store/formStore'
+import Checkbox from '@/components/Checkbox'
+import DropDown from '@/components/DropDown'
+import Selector from '@/components/Selector'
+import Switch from '@/components/Toggle'
 import { useSubmitForm } from '@/hooks/useSubmitForm'
 import { daysValues, themeValues, zoneValues } from '@/utils/consts'
 
+/**
+ * Componente del formulario principal
+ * Obtiene los valores: Zona, Tema, Días de servicio, Precio
+ * @returns {JSX.Element} - Elemento del formulario
+ * @see useFormStore
+ * @see useSubmitForm
+ * @see Checkbox
+ * @see DropDown
+ * @see Selector
+ * @see Switch
+ */
 function Form() {
-  /**
-   * Componente del formulario principal
-   * Obtiene los valores: Zona, Tema, Días de servicio, Precio
-   * @returns {JSX.Element} - Elemento del formulario
-   */
+
   // Estado global del formulario
   const { 
     zoneToggle,

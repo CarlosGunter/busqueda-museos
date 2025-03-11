@@ -1,26 +1,34 @@
-import Toggle from "@components/Toggle"
+import Toggle from "@/components/Toggle"
 
-interface SelectorProps {
+/**
+ * Interface para las props del checkbox
+ */
+interface CheckboxProps {
+  /** Opciones del checkbox */
   options: string[]
+  /** Nombre con el que se recupera el valor del checkbox */
   name: string
+  /** Texto de la UI que identifica al checkbox */
   title: string
+  /** Estado del checkbox (habilitado/deshabilitado) */
   isCheckT: boolean
+  /** Función que administra el toggle del checkbox */
   toggleControl: (isChecked: boolean) => void
+  /** Opciones seleccionadas del checkbox */
   selected: Set<string>
+  /** Función que administra las opciones del checkbox */
   selectControl: (selected: Set<string>) => void
+  /** Opciones seleccionadas por defecto */
   defaultSelected: Set<string>
 }
 
-// Genera un selector multiple de opciones vertical con un toggle y sus opciones
-// El toggle habilita/deshabilita el selector
-// @param options: string[] - Opciones del selector
-// @param name: string - Nombre con el que se recupera el valor del selector
-// @param title: string - Texto de la UI que identifica al selector
-// @param isCheckT: boolean - Estado del selector (habilitado/deshabilitado)
-// @param toggleControl - Función que administra el toggle del selector
-// @param selected: Set<string> - Opciones seleccionadas del selector
-// @param selectControl - Función que administra las opciones del selector
-// @param defaultSelected: Set<string> - Opciones seleccionadas por defecto
+/**
+ * Genera un selector multiple de opciones vertical con un toggle
+ * El toggle habilita/deshabilita el checkbox
+ * @param {CheckboxProps} props Propiedades del checkbox
+ * @returns {JSX.Element} Elemento checkbox
+ * @see Toggle
+ */
 export default function Checkbox({
   options,
   name,
@@ -30,27 +38,29 @@ export default function Checkbox({
   selected,
   selectControl,
   defaultSelected
-}: SelectorProps) {
+}: CheckboxProps) {
 
-  // Funcion que se ejecuta al cambiar los valores del selector
-  // @param value: string - Valor de la opción seleccionada
+  /**
+   * Función que se ejecuta al cambiar los valores del checkbox
+   * @param value Valor de la opción seleccionada
+   */
   const handleChange = (value: string) => {
     let newSelected: Set<string> = new Set(selected)
-    // Agega/elimina la opción seleccionada
+    // Agrega/elimina la opción seleccionada
     isCheckT && newSelected.has(value)
       ? newSelected.delete(value) // Elimina
       : newSelected.add(value) // Agrega
-    // Si el toggle esta desactivado, selecciona solo la opción seleccionada
+    // Si el toggle está desactivado, selecciona solo la opción seleccionada
     if (!isCheckT) newSelected = new Set([value])
     // Si no hay opciones seleccionadas, setea las opciones por defecto
     if (newSelected.size === 0) {
       defaultSelected.forEach(value => newSelected.add(value)) // Resetea
       toggleControl(false) // Desactiva el toggle
-    // Si hay al mnenos una opción seleccionada, activa el toggle
+    // Si hay al menos una opción seleccionada, activa el toggle
     } else toggleControl(true)
-    // Si todas las opciones estan seleccionadas, desactiva el toggle
+    // Si todas las opciones están seleccionadas, desactiva el toggle
     // y evita que el estado tenga todas las opciones ya que
-    // seria lo mismo que tener el toggle desactivado
+    // sería lo mismo que tener el toggle desactivado
     if (newSelected.size === options.length) {
       toggleControl(false)
       return

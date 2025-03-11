@@ -1,17 +1,24 @@
+/**
+ * Interface para las props del dropdown
+ */
 interface DropDownProps {
+  /** Opciones del selector */
   options: string[]
+  /** Nombre con el que se recupera el valor del selector */
   name: string
+  /** Texto de la UI que identifica al selector */
   title: string
+  /** Opción seleccionada del selector */
   selected: string
+  /** Función que se ejecuta al cambiar de opción */
   onChange: (selected: string) => void
 }
 
-// Componente para un selector de opciones
-// @param options: string[] - Opciones del selector
-// @param name: string - Nombre con el que se recupera el valor del selector
-// @param title: string - Texto de la UI que identifica al selector
-// @param selected: string - Opción seleccionada del selector
-// @param onChange - Función que se ejecuta al cambiar de opción en el selector
+/**
+ * Genera un selector de opciones
+ * @param {DropDownProps} props Propiedades del dropdown
+ * @returns {JSX.Element} Elemento DropDown
+ */
 export default function DropDown({
   options,
   name,
@@ -19,6 +26,7 @@ export default function DropDown({
   selected,
   onChange
 }: DropDownProps) {
+
   return (
     <label className="flex justify-between gap-2">
       <span className="font-bold flex items-center">{title}</span>

@@ -1,22 +1,32 @@
-import Toggle from '@components/Toggle'
+import Toggle from '@/components/Toggle'
 
+/**
+ * Interface para las props del selector
+ */
 interface SelectorProps {
+  /** Opciones del selector */
   options: string[]
+  /** Nombre con el que se recupera el valor del selector */
   name: string
+  /** Texto de la UI que identifica al selector */
   title: string
+  /** Estado del selector (habilitado/deshabilitado) */
   isCheckT: boolean
+  /** Función que administra el toggle del selector */
   toggleControl: (isChecked: boolean) => void
+  /** Opción seleccionada del selector */
   selected: string
+  /** Función que administra las opciones del selector */
   selectControl: (selected: string) => void
 }
 
-// Genera un selector de opciones vertical con un toggle y sus opciones
-// El toggle habilita/deshabilita el selector
-// @param options: string[] - Opciones del selector
-// @param name: string - Nombre con el que se recupera el valor del selector
-// @param title: string - Texto de la UI que identifica al selector
-// @param isCheckT: boolean - Estado del selector (habilitado/deshabilitado)
-// @param selected: string - Opción seleccionada del selector
+/**
+ * Genera un selector de opciones vertical con un toggle y sus opciones
+ * El toggle habilita/deshabilita el selector
+ * @param {SelectorProps} props Propiedades del selector
+ * @returns {JSX.Element} Elemento selector
+ * @see Toggle
+ */
 export default function Selector({
   options,
   name,
@@ -27,8 +37,10 @@ export default function Selector({
   selectControl
 }: SelectorProps) {
 
-  // Funcion que se ejecuta al cambiar de opción en el selector
-  // @param value: string - Valor de la opción seleccionada
+  /**
+   * Función que se ejecuta al cambiar de opción en el selector
+   * @param value Valor de la opción seleccionada
+   */
   const handleChange = (value: string) => {
     // Si se deselecciona la opción, resetea el selector
     if (selected === value) {

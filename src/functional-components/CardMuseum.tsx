@@ -1,11 +1,27 @@
-import { type TestMuseo } from "@/types.d"
+import type { TestMuseo } from "@/types.d"
 import { imagesUrl } from "@/config.museums"
 
-function CardMuseum(
-  { id, name, address, days, zone, type, price, schedule }: TestMuseo
-) {
-  
-  // const imgs = new URL(`@images/${id}.webp`, import.meta.url).href
+/**
+ * Interface para las props del componente de museo
+ * Definida en src/types.d como TestMuseo
+ * @see TestMuseo
+ */
+
+/**
+ * Componente que muestra la información de un museo
+ * @param {TestMuseo} props Propiedades del museo
+ * @returns {JSX.Element} Elemento del museo
+ */
+function CardMuseum({
+  id,
+  name,
+  address,
+  days,
+  zone,
+  theme: type,
+  price,
+  schedule
+}: TestMuseo){
 
   return (
     <article className="p-4 shadow-sm rounded-2xl border border-gray-300">

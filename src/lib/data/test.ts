@@ -6,7 +6,7 @@ export const data: TestMuseo[] = [
     name: "Museo Tezozómoc",
     address: "Av. Zempoaltecas s/n esq. Av. Manuel Salazar, Col. Ex Hacienda El Rosario, CP 02420, Azcapotzalco, Ciudad de México",
     zone: "Norte",
-    type: "Historia",
+    theme: "Historia",
     days: ['Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
     schedule: [
       "Martes a viernes: 9:00 - 17:00",
@@ -25,7 +25,7 @@ export const data: TestMuseo[] = [
     name: "Museo de Azcapotzalco",
     address: "Hacienda del Rosario s/n, Col. Prados del Rosario, CP 02420, Azcapotzalco, Ciudad de México",
     zone: "Norte",
-    type: "Historia",
+    theme: "Historia",
     days: ["Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"],
     schedule: [
       "Martes a domingo: 10:00 - 17:00",
@@ -39,7 +39,7 @@ export const data: TestMuseo[] = [
     name: "Museo del Retrato Hablado",
     address: "Av. Universidad 1330, Col. Del Carmen, CP 04100, Coyoacán, Ciudad de México",
     zone: "Sur",
-    type: "Arte",
+    theme: "Arte",
     days: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
     schedule: [
       "Lunes a viernes: 16:00 - 19:00",
@@ -53,7 +53,7 @@ export const data: TestMuseo[] = [
     name: "Instituto del Derecho de Asilo Museo Casa de León Trotsky",
     address: "Av. Río Churubusco 410, Col. Del Carmen Coyoacán, CP 04100, Coyoacán, Ciudad de México",
     zone: "Sur",
-    type: "Historia",
+    theme: "Historia",
     days: ["Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"],
     schedule: [
       "Martes a domingo: 10:00 - 17:00",
@@ -71,7 +71,7 @@ export const data: TestMuseo[] = [
     name: "Museo Anahuacalli",
     address: "Museo 150, Col. San Pablo Tepetlapa, CP 04620, Coyoacán, Ciudad de México",
     zone: "Sur",
-    type: "Cultura",
+    theme: "Cultura",
     days: ["Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"],
     schedule: [
       "Martes a domingo: 11:00 - 18:00",

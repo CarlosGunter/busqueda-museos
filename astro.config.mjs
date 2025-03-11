@@ -10,11 +10,6 @@ export default defineConfig({
   integrations: [react()],
 
   vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        '@images': '/src/assets/images',
-      }
-    }
+    plugins: [tailwindcss()]
   }
 });
