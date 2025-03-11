@@ -11,6 +11,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
+    "strict": true,
     "paths": {
       "@/*": ["src/*"],
       "@f-components/*": ["src/functional-components/*"],

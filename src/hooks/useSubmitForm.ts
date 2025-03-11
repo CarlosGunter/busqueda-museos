@@ -1,3 +1,4 @@
+import { getFilteredMuseums } from "@/services/filteredMuseums"
 import { useListStore } from "@/store/listStore"
 import { useTransition } from "react"
 
@@ -29,18 +30,17 @@ export function useSubmitForm() {
       const currentPrice = formData.get('precioToggle') === 'on'
         ? 'gratis'
         : 'all'
-      // Obtener los resultados de la búsqueda llamando a la API
+      // Crear los query params para la búsqueda
       const params = new URLSearchParams({
         zona: currentZone,
         tema: currentTheme,
         precio: currentPrice,
         dias: selectedDays?.length > 0 ? selectedDays.join(';') : 'all'
       })
-      const res = await fetch(`/api/get-list-museums?${params}`)
-      const data = await res.json()
+      // Obtener los resultados de la búsqueda llamando a la API
+      const results = await getFilteredMuseums(params)
       // Actualizar el estado global de la lista de museos
-      // con los resultados de la búsqueda
-      useListStore.setState({ museums: data })
+      useListStore.setState({ museums: results })
   
       console.log({ currentZone, currentTheme, selectedDays, currentPrice })
       // Hacer scroll hacia la lista de museos
