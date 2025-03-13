@@ -1,5 +1,4 @@
 import type { TestMuseo } from "@/types.d"
-import { imagesUrl } from "@/config.museums"
 
 /**
  * Interface para las props del componente de museo
