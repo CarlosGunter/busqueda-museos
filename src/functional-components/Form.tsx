@@ -9,7 +9,7 @@ import { daysValues, themeValues, zoneValues } from '@/utils/consts'
 /**
  * Componente del formulario principal
  * Obtiene los valores: Zona, Tema, Días de servicio, Precio
- * @returns {JSX.Element} - Elemento del formulario
+ * @returns {JSX.Element} Elemento del formulario
  * @see useFormStore
  * @see useSubmitForm
  * @see Checkbox

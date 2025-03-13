@@ -13,7 +13,7 @@ export function useSubmitForm() {
 
   /**
    * Función que maneja el evento submit del formulario
-   * @param e: - Evento submit del formulario
+   * @param e Evento submit del formulario
    */
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() // Ignora el comportamiento por defecto
