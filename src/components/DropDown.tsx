@@ -1,9 +1,9 @@
 /**
  * Interface para las props del dropdown
  */
-interface DropDownProps {
+interface DropDownProps<T extends readonly string[]> {
   /** Opciones del selector */
-  options: string[]
+  options: T
   /** Nombre con el que se recupera el valor del selector */
   name: string
   /** Texto de la UI que identifica al selector */
@@ -19,13 +19,13 @@ interface DropDownProps {
  * @param {DropDownProps} props Propiedades del dropdown
  * @returns {JSX.Element} Elemento DropDown
  */
-export default function DropDown({
+export default function DropDown<T extends readonly string[]>({
   options,
   name,
   title,
   selected,
   onChange
-}: DropDownProps) {
+}: DropDownProps<T>) {
 
   return (
     <label className="flex justify-between gap-2">

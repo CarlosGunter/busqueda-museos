@@ -3,9 +3,9 @@ import Toggle from "@/components/Toggle"
 /**
  * Interface para las props del checkbox
  */
-interface CheckboxProps {
+interface CheckboxProps<T extends readonly string[]> {
   /** Opciones del checkbox */
-  options: string[]
+  options: T
   /** Nombre con el que se recupera el valor del checkbox */
   name: string
   /** Texto de la UI que identifica al checkbox */
@@ -29,7 +29,7 @@ interface CheckboxProps {
  * @returns {JSX.Element} Elemento checkbox
  * @see Toggle
  */
-export default function Checkbox({
+export default function Checkbox<T extends readonly string[]>({
   options,
   name,
   title,
@@ -38,7 +38,7 @@ export default function Checkbox({
   selected,
   selectControl,
   defaultSelected
-}: CheckboxProps) {
+}: CheckboxProps<T>) {
 
   /**
    * Función que se ejecuta al cambiar los valores del checkbox

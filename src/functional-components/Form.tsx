@@ -4,7 +4,7 @@ import DropDown from '@/components/DropDown'
 import Selector from '@/components/Selector'
 import Switch from '@/components/Toggle'
 import { useSubmitForm } from '@/hooks/useSubmitForm'
-import { daysValues, themeValues, zoneValues } from '@/utils/consts'
+import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
 
 /**
  * Componente del formulario principal
@@ -45,7 +45,7 @@ function Form() {
     <div className="grid place-items-center m-auto max-w-80">
       <form onSubmit={handleSubmit} id='form' className="grid gap-5 w-full">
         <Selector
-          options={zoneValues}
+          options={ZONE_VALUES}
           name='zonas'
           title='Zona'
           isCheckT={zoneToggle}
@@ -54,14 +54,14 @@ function Form() {
           selectControl={setZone}
         />
         <DropDown
-          options={themeValues}
+          options={THEME_VALUES}
           name='tema'
           title='Tema'
           selected={theme}
           onChange={setTheme}
         />
         <Checkbox
-          options={daysValues}
+          options={DAYS_VALUES}
           name='dias'
           title='Dias'
           isCheckT={daysToggle}

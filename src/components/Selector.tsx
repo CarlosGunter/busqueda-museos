@@ -3,9 +3,9 @@ import Toggle from '@/components/Toggle'
 /**
  * Interface para las props del selector
  */
-interface SelectorProps {
+interface SelectorProps<T extends readonly string[]> {
   /** Opciones del selector */
-  options: string[]
+  options: T
   /** Nombre con el que se recupera el valor del selector */
   name: string
   /** Texto de la UI que identifica al selector */
@@ -27,7 +27,7 @@ interface SelectorProps {
  * @returns {JSX.Element} Elemento selector
  * @see Toggle
  */
-export default function Selector({
+export default function Selector<T extends readonly string[]>({
   options,
   name,
   title,
@@ -35,7 +35,7 @@ export default function Selector({
   selected,
   toggleControl,
   selectControl
-}: SelectorProps) {
+}: SelectorProps<T>) {
 
   /**
    * Función que se ejecuta al cambiar de opción en el selector
