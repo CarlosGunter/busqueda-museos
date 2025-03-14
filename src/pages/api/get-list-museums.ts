@@ -22,36 +22,25 @@ export async function GET({ request }: getListMuseumsProps) {
   // Obtener los parámetros de búsqueda
   const { url } = request
   const { searchParams } = new URL(url)
-  const zonePrm = searchParams.get('zona')
-  const themePrm = searchParams.get('tema')
-  const daysPrm = searchParams.get('dias') !== 'all'
-    ? searchParams.get('dias')?.split(';') || 'all'
-    : 'all'
-  const pricePrm = searchParams.get('precio')
-
+  const params = Object.fromEntries(searchParams.entries())
+  console.log(params) /** @todo Temporal, quitar */
   try {
     // Validar los parámetros de búsqueda
-    const parsedParams = querySchema.parse({
-      zone: zonePrm,
-      theme: themePrm,
-      days: daysPrm,
-      price: pricePrm,
-    })
+    const parsedParams = querySchema.parse(params)
     // Obtener los parámetros de búsqueda después de validarlos
-    const { zone, theme, days, price } = parsedParams
+    const { zona, tema, dias, precio } = parsedParams
     // Filtrar los museos por los parámetros de búsqueda
     const filteredData = data.filter((museum) => {
       // Descartar por zona
-      if (zone !== 'all' && museum.zone !== zone) return false
+      if (zona && museum.zone !== zona) return false
       // Descartar por tema
-      if (theme !== 'all' && museum.theme !== theme) return false
+      if (tema && museum.theme !== tema) return false
       // Descartar por días
-      if (days !== 'all' && !days.some(day => museum.days.includes(day)))
-        return false
+      if (dias && !dias.some(day => museum.days.includes(day))) return false
       // Descartar por precio
       if (
-        price !== 'all'
-        && (price === 'gratis'
+        precio
+        && (precio === 'gratis'
           ? museum.price.regular > 0
           : museum.price.regular === 0
         )
@@ -81,11 +70,12 @@ export async function GET({ request }: getListMuseumsProps) {
 
 /** Declaración del esquema de consulta */
 const querySchema = z.object({
-  zone: z.enum(['all', ...ZONE_VALUES]).default('all'),
-  theme: z.enum(['all', ...THEME_VALUES]).default('all'),
-  days: z.union([
-    z.literal('all'),
-    z.array(z.enum([...DAYS_VALUES])),
-  ]).default('all'),
-  price: z.enum(['all', 'gratis']).default('all'),
+  zona: z.enum(ZONE_VALUES).optional(),
+  tema: z.enum(THEME_VALUES).optional(),
+  dias: z
+    .string()
+    .transform((value) => value.split(';').map((day) => day.trim()))
+    .pipe(z.enum(DAYS_VALUES).array())
+    .optional(),
+  precio: z.literal('gratis').optional(),
 }).strict()

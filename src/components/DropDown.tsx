@@ -36,7 +36,7 @@ export default function DropDown<T extends readonly string[]>({
       onChange={e => onChange(e.target.value)}
       className="relative h-10 rounded-md cursor-pointer bg-gray-900 p-2"
       >
-        <option value="all">Todos</option>
+        <option value="">Todos</option>
         {options.map(value => (
           <option
             key={value}

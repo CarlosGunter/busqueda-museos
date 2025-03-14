@@ -21,22 +21,22 @@ export function useSubmitForm() {
       const formData = new FormData(e.currentTarget)
       // Obtener los valores de los campos del formulario
       const currentZone = formData.get('zonasToggle') === 'on'
-        ? formData.get('zonas')?.toString() || 'all'
-        : 'all'
-      const currentTheme = formData.get('tema')?.toString() || 'all'
+        ? formData.get('zonas')?.toString()
+        : undefined
+      const currentTheme = formData.get('tema')?.toString()
       const selectedDays = formData.get('diasToggle') === 'on'
-        ? Array.from(formData.getAll('dias'), day => day.toString()) || []
-        : []
+        ? Array.from(formData.getAll('dias'), day => day.toString()).join(';')
+        : undefined
       const currentPrice = formData.get('precioToggle') === 'on'
         ? 'gratis'
-        : 'all'
-      // Crear los query params para la búsqueda
-      const params = new URLSearchParams({
+        : undefined
+      // Crear un objeto con los parámetros de búsqueda
+      const params = {
         zona: currentZone,
         tema: currentTheme,
+        dias: selectedDays,
         precio: currentPrice,
-        dias: selectedDays?.length > 0 ? selectedDays.join(';') : 'all'
-      })
+      }
       // Obtener los resultados de la búsqueda llamando a la API
       const results = await getFilteredMuseums(params)
       // Actualizar el estado global de la lista de museos
