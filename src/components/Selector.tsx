@@ -42,12 +42,6 @@ export default function Selector<T extends readonly string[]>({
    * @param value Valor de la opción seleccionada
    */
   const handleChange = (value: string) => {
-    // Si se deselecciona la opción, resetea el selector
-    if (selected === value) {
-      toggleControl(false) // Desactiva el toggle
-      selectControl(options[0]) // Selecciona la primera opción
-      return // Sale de la función
-    }
     // Selecciona la opción
     selectControl(value) // Selecciona la opción
     toggleControl(true) // Activa el toggle
