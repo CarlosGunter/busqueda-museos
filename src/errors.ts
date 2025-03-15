@@ -14,6 +14,7 @@ const errorFactory = (alias: string) => {
 }
 
 /** Back errors */
-export const NoParamsError = errorFactory('NoParamsError')
+export const UnespectedError = errorFactory('Error inesperado')
 
 /** Front errors */
+export const GeneralError = errorFactory('Ha ocurrido un error')

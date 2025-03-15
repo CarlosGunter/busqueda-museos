@@ -1,5 +1,6 @@
 import { getFilteredMuseums } from "@/services/filteredMuseums"
 import { useListStore } from "@/store/listStore"
+import { useErrorStore } from "@/store/errorStore"
 import { useTransition } from "react"
 
 /**
@@ -37,14 +38,21 @@ export function useSubmitForm() {
         dias: selectedDays,
         precio: currentPrice,
       }
-      // Obtener los resultados de la búsqueda llamando a la API
-      const results = await getFilteredMuseums(params)
-      // Actualizar el estado global de la lista de museos
-      useListStore.setState({ museums: results })
-  
-      console.log({ currentZone, currentTheme, selectedDays, currentPrice })
-      // Hacer scroll hacia la lista de museos
-      window.location.href = '#list-museums'
+      try {
+        // Obtener los resultados de la búsqueda llamando a la API
+        const results = await getFilteredMuseums(params)
+        // Actualizar el estado global de la lista de museos
+        useListStore.setState({ museums: results })
+        /** @todo Temporal */
+        console.log({ currentZone, currentTheme, selectedDays, currentPrice })
+        // Hacer scroll hacia la lista de museos
+        window.location.href = '#list-museums'
+
+      } catch (error) {
+        // Actualizar el estado global del error
+        useErrorStore.setState({ errorState: true })
+        console.log(error) /** @todo Temporal, quitar */
+      }
     })
   }
   // Exponer el estado de la transición y la función

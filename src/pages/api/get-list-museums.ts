@@ -1,6 +1,7 @@
 import { data } from '@/lib/data/test'
 import { z, ZodError } from 'zod'
 import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
+import { UnespectedError } from '@/errors'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
 
@@ -23,7 +24,7 @@ export async function GET({ request }: getListMuseumsProps) {
   const { url } = request
   const { searchParams } = new URL(url)
   const params = Object.fromEntries(searchParams.entries())
-  console.log(params) /** @todo Temporal, quitar */
+  console.log(url) /** @todo Temporal, quitar */
   try {
     // Validar los parámetros de búsqueda
     const parsedParams = querySchema.parse(params)
@@ -55,7 +56,6 @@ export async function GET({ request }: getListMuseumsProps) {
   
   } catch (error) {
     if (error instanceof ZodError) {
-      console.log(error.errors) /** @todo Temporal, quitar */
       // Retornar error 400 si los parámetros no son válidos
       return new Response(JSON.stringify({
         message: 'Parámetros de búsqueda inválidos',
@@ -66,6 +66,13 @@ export async function GET({ request }: getListMuseumsProps) {
       })
     }
   }
+  // Retornar error 500 si ocurre un error inesperado
+  return new Response(JSON.stringify({
+    message: 'Error inesperado',
+    error: new UnespectedError('Error inesperado'),
+  }), {
+    status: 500,
+  })
 }
 
 /** Declaración del esquema de consulta */
