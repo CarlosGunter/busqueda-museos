@@ -23,28 +23,37 @@ function CardMuseum({
 }: TestMuseo){
 
   return (
-    <article className="p-4 shadow-sm rounded-2xl border border-gray-300">
-      <div className="h-48 overflow-hidden">
+    <article className="shadow-lg rounded-3xl bg-gray-900">
+      <div className="relative h-40 overflow-hidden">
         <img
           src={`/images/museums/${id}.webp`}
           alt={`${name} image`}
-          className="relative object-cover w-full h-full"
+          className="absolute object-cover w-full h-full rounded-t-3xl"
         />
+        <div className="relative z-10 flex h-full items-end justify-between">
+          <span className="bg-black/60 p-1.5 rounded-md m-1">
+            {price.regular === 0
+              ? 'Gratis'
+              : `$${price.regular} MXN`
+            }
+          </span>
+          <span className="bg-black/60 p-1.5 rounded-md m-1">
+            {zone}
+          </span>
+        </div>
       </div>
-      <h2 className="text-lg font-bold">{name}</h2>
-      <p className="text-gray-400">{address}</p>
-      {
-        schedule.map((item, i) => (
-          <p key={`shedule${i}`} className="text-sm italic">{item}</p>
-        ))
-      }
-      <p className="text-sm">Zona: {zone}</p>
-      <p className="text-sm">Temas: {type}</p>
-      {
-        price.regular === 0
-          ? <p className="text-lg font-semibold">Gratis</p>
-          : <p className="text-lg font-semibold">${price.regular}</p>
-      }
+      <div className="grid gap-1.5 p-4 ">
+        <h2 className="text-lg font-bold">{name}</h2>
+        <p className="text-gray-400 line-clamp-1">{address}</p>
+        <div>
+          {
+            schedule.map((item, i) => (
+              <p key={`schedule${i}`} className="text-sm italic">{item}</p>
+            ))
+          }
+        </div>
+        <p className="text-sm bg-primary/90 p-1.5 my-1 w-fit rounded-md">{type}</p>
+      </div>
     </article>
   )
 }
