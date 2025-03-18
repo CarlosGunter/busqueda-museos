@@ -30,7 +30,7 @@ function CardMuseum({
           alt={`${name} image`}
           className="absolute object-cover w-full h-full rounded-t-3xl"
         />
-        <div className="relative z-10 flex h-full items-end justify-between">
+        <div className="relative flex h-full items-end justify-between">
           <span className="bg-black/60 p-1.5 rounded-md m-1">
             {price.regular === 0
               ? 'Gratis'
