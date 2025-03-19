@@ -1,13 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(72.79% 0.1357 0);
-  --color-bg-dark: #23202a;
+  /* COLORS */
+  --color-primary-100:#C7B299;
+  --color-primary-200:#a9957d;
+  --color-primary-300:#675640;
+  --color-accent-100:#A68B5B;
+  --color-accent-200:#483507;
+  --color-text-100:#4D4D4D;
+  --color-text-200:#797979;
+  --color-bg-100:#F5EFE7;
+  --color-bg-200:#ebe5dd;
+  --color-bg-300:#c2bdb5;
+  
+  /* --color-primary-100:#8B6B61;
+  --color-primary-200:#bc998e;
+  --color-primary-300:#fffdf1;
+  --color-accent-100:#F2A900;
+  --color-accent-200:#854e00;
+  --color-text-100:#4D4D4D;
+  --color-text-200:#797979; */
+  --color-bg-100:#F5ECD7;
+  --color-bg-200:#ebe2cd;
+  --color-bg-300:#c2baa6;
+
+  --color-bg-light: white;
+  
 }
 
-:root {
+/* :root {
   color-scheme: dark light;
-}
+} */
 
 html {
   scroll-behavior: smooth;
@@ -23,5 +46,5 @@ p {
 
 /* Estilos del componente Selector */
 .selector-check-bg:has(>:checked) > label {
-  @apply bg-primary;
+  @apply bg-primary-100 text-white;
 }

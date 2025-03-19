@@ -70,7 +70,7 @@ export default function Checkbox<T extends readonly string[]>({
   }
 
   return (
-    <div className="grid gap-1">
+    <div className="grid gap-1 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm">
       <Toggle
         name={name}
         text={title}
@@ -78,16 +78,12 @@ export default function Checkbox<T extends readonly string[]>({
         toggleChange={toggleControl}
       />
       <div
-      className={`grid rounded-xl p-1 bg-gray-900`}
+      className={`grid rounded-xl p-1 bg-bg-200`}
       >
         {options.map((option, i) => (
           <div
           key={option + i}
-          className="
-            relative h-10 grid place-items-center
-            w-full rounded-md cursor-pointer
-            hover:bg-gray-700 selector-check-bg
-          "
+          className="relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-100 selector-check-bg"
           >
             <input
               type="checkbox"

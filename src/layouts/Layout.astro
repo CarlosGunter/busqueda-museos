@@ -1,6 +1,6 @@
 ---
 import '@/styles/global.css';
-import background from '@/assets/background.svg';
+import background from '@/assets/cover.webp';
 import Cover from '@/components/Cover.astro';
 import cover from '@/assets/cover.webp';
 import Form from '@f-components/Form';
@@ -16,17 +16,17 @@ import FloatButton from '@/components/FloatButton.astro';
 		<meta name="generator" content={Astro.generator} />
 		<title>Museos CDMX</title>
 	</head>
-	<body>
-		<img
-			class="fixed top-0 left-0 h-full -z-10 blur-2xl"
+	<body class="bg-bg-100 text-text-100">
+		<!-- <img
+			class="fixed top-0 left-0 h-full -z-10 object-cover w-full"
 			id="background"
 			src={background.src}
 			alt=""
 			fetchpriority="high"
-		/>
+		/> -->
 		<FloatButton />
 		<Cover image={cover.src} title="Museos CDMX" />
-		<div class="mx-auto px-2">
+		<div class="px-0.5">
 			<Form client:load />
 			<slot />
 		</div>

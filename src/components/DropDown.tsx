@@ -28,13 +28,13 @@ export default function DropDown<T extends readonly string[]>({
 }: DropDownProps<T>) {
 
   return (
-    <label className="flex justify-between gap-2">
+    <label className="flex justify-between gap-2 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm text-primary-300">
       <span className="font-bold flex items-center">{title}</span>
       <select
       name={name}
       value={selected}
       onChange={e => onChange(e.target.value)}
-      className="relative h-10 rounded-md cursor-pointer bg-gray-900 p-2"
+      className="relative h-10 rounded-md cursor-pointer bg-primary-100 p-1.5 focus-visible:outline-none"
       >
         <option value="">Todos</option>
         {options.map(value => (

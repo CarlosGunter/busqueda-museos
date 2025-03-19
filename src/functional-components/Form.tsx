@@ -42,7 +42,7 @@ function Form() {
   const { isPending, handleSubmit } = useSubmitForm()
 
   return (
-    <div className="grid place-items-center m-auto max-w-80">
+    <div className="grid place-items-center m-auto max-w-100 p-4 rounded-xl mb-6">
       <form onSubmit={handleSubmit} id='form' className="grid gap-5 w-full">
         <Selector
           options={ZONE_VALUES}
@@ -70,14 +70,16 @@ function Form() {
           defaultSelected={defaultDays}
           selectControl={setDays}
         />
-        <Switch
-          name='precio'
-          text='Solo Gratis'
-          isChecked={priceToggle}
-          toggleChange={setPriceToggle}
-        />
+        <div className='rounded-xl p-3 bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm'>
+          <Switch
+            name='precio'
+            text='Solo Gratis'
+            isChecked={priceToggle}
+            toggleChange={setPriceToggle}
+          />
+        </div>
         <button
-          className="place-self-center w-min text-pink-500 bg-transparent border border-solid border-pink-500 hover:bg-pink-500 hover:text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          className="place-self-center w-min text-primary-100 bg-transparent border border-solid border-prtext-primary-100 hover:bg-prtext-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           type="submit"
           disabled={isPending}
         >
