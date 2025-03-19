@@ -26,13 +26,10 @@ import FloatButton from '@/components/FloatButton.astro';
 		/> -->
 		<FloatButton />
 		<Cover image={cover.src} title="Museos CDMX" />
-		<div class="px-0.5">
+		<div class="px-0.5 m-auto md:flex md:content-center md:items-start md:max-w-6xl">
 			<Form client:load />
 			<slot />
 		</div>
 	</body>
 </html>
 
-<style>
-	
-</style>
