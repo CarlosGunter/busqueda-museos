@@ -11,7 +11,7 @@ import FloatButton from '@/components/FloatButton.astro';
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Museos CDMX</title>
@@ -26,7 +26,7 @@ import FloatButton from '@/components/FloatButton.astro';
 		/> -->
 		<FloatButton />
 		<Cover image={cover.src} title="Museos CDMX" />
-		<div class="px-0.5 m-auto md:flex md:content-center md:items-start md:max-w-6xl">
+		<div class="px-0.5 m-auto md:flex md:items-start md:max-w-300">
 			<Form client:load />
 			<slot />
 		</div>

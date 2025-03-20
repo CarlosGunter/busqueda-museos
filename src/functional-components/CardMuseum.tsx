@@ -23,8 +23,8 @@ function CardMuseum({
 }: TestMuseo){
 
   return (
-    <article className="rounded-3xl bg-bg-light shadow-md">
-      <div className="relative h-45 overflow-hidden">
+    <article className="rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3">
+      <div className="relative h-45 overflow-hidden lg:col-start-4 lg:col-span-2 lg:row-[1]">
         <img
           src={`/images/museums/${id}.webp`}
           alt={`${name} image`}
@@ -45,7 +45,7 @@ function CardMuseum({
           </span>
         </div>
       </div>
-      <div className="grid gap-1.5 p-4 ">
+      <div className="grid gap-1.5 p-4 lg:col-span-3">
         <h2 className="text-lg font-bold">{name}</h2>
         <p className="text-text-200 line-clamp-1">{address}</p>
         <div>
