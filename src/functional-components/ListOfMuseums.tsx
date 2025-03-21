@@ -12,12 +12,15 @@ function ListOfMuseums() {
   const { museums } = useListStore(state => state)
 
   return (
-    <main className="grid gap-4 p-2" id='list-museums'>
-      {museums.length > 0 && (
-        museums.map((museum) => (
-          <CardMuseum key={museum.id} {...museum} />
-        ))
-      )}
+    <main className="grid gap-4 p-2 lg:min-w-[700px]" id='list-museums'>
+      {museums.length
+        ? (
+          museums.map((museum) => (
+            <CardMuseum key={museum.id} {...museum} />
+          ))
+        ) : (
+          <p className='min-h-25'>No se encontraron museos.</p>
+        )}
     </main>
   )
 }
