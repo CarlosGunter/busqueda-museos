@@ -36,7 +36,7 @@ export const getFilteredMuseums = async (params: getFilteredMuseumsProps) => {
     return data
 
   } catch (error) {
-    console.log(error) /** @todo Temporal, quitar */
+    // console.log(error) /** @todo Temporal, quitar */
     throw new GeneralError('Error al obtener los museos filtrados')
   }
 }

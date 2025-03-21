@@ -51,7 +51,7 @@ export function useSubmitForm() {
       } catch (error) {
         // Actualizar el estado global del error
         useErrorStore.setState({ errorState: true })
-        console.log(error) /** @todo Temporal, quitar */
+        // console.log(error) /** @todo Temporal, quitar */
       }
     })
   }
