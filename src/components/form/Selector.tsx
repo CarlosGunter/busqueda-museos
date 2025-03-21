@@ -1,4 +1,4 @@
-import Toggle from '@/components/Toggle'
+import Toggle from '@/components/form/Toggle'
 
 /**
  * Interface para las props del selector

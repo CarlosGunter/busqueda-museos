@@ -1,8 +1,8 @@
 import { useFormStore } from '@/store/formStore'
-import Checkbox from '@/components/Checkbox'
-import DropDown from '@/components/DropDown'
-import Selector from '@/components/Selector'
-import Switch from '@/components/Toggle'
+import Checkbox from '@/components/form/Checkbox'
+import DropDown from '@/components/form/DropDown'
+import Selector from '@/components/form/Selector'
+import Switch from '@/components/form/Toggle'
 import { useSubmitForm } from '@/hooks/useSubmitForm'
 import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
 
