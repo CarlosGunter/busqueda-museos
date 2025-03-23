@@ -26,7 +26,8 @@ export const getFilteredMuseums = async (
     // Crear los query params de la URL
     const urlParams = new URLSearchParams()
     Object.entries(params).forEach(([key, value]) => {
-      if (typeof value === 'string') urlParams.append(key, value)
+      /* eslint-disable-next-line */
+      if (value) urlParams.append(key, value)
     })
     // Llamada a la API
     const res = await fetch(`/api/get-list-museums?${urlParams.toString()}`)
