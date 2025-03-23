@@ -20,9 +20,9 @@ export interface TestMuseo {
   /** Días de apertura del museo */
   days: string[]
   /** Horario del museo */
-  schedule: Array<string>
+  schedule: string[]
   /** Precio del museo */
-  price: {    
+  price: {
     /** Precio regular del museo */
     regular: number
     /** Promociones del museo */

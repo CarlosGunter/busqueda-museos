@@ -24,10 +24,10 @@ interface SelectorProps<T extends readonly string[]> {
  * Genera un selector de opciones vertical con un toggle y sus opciones
  * El toggle habilita/deshabilita el selector
  * @param {SelectorProps} props Propiedades del selector
- * @returns {JSX.Element} Elemento selector
+ * @returns {React.ReactElement} Elemento selector
  * @see Toggle
  */
-export default function Selector<T extends readonly string[]>({
+export default function Selector<T extends readonly string[]> ({
   options,
   name,
   title,
@@ -35,20 +35,19 @@ export default function Selector<T extends readonly string[]>({
   selected,
   toggleControl,
   selectControl
-}: SelectorProps<T>) {
-
+}: SelectorProps<T>): React.ReactElement {
   /**
    * Función que se ejecuta al cambiar de opción en el selector
    * @param value Valor de la opción seleccionada
    */
-  const handleChange = (value: string) => {
+  const handleChange = (value: string): void => {
     // Selecciona la opción
     selectControl(value) // Selecciona la opción
     toggleControl(true) // Activa el toggle
   }
 
   return (
-    <div className="grid gap-1 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm">
+    <div className='grid gap-1 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm'>
       <Toggle
         name={name}
         text={title}
@@ -56,22 +55,22 @@ export default function Selector<T extends readonly string[]>({
         toggleChange={toggleControl}
       />
       <div
-        className="flex justify-around rounded-xl p-1 bg-bg-200 shadow-inner"
+        className='flex justify-around rounded-xl p-1 bg-bg-200 shadow-inner'
       >
         {options.map((option, i) => (
           <div
-          key={option + i}
-          className="relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-300 selector-check-bg"
+            key={`${option}-${i}`}
+            className='relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-300 selector-check-bg'
           >
             <input
-              type="radio"
+              type='radio'
               name={name}
               value={option}
               checked={isCheckT && selected === option}
               onChange={e => handleChange(e.target.value)}
-              className="absolute w-full h-full opacity-0"
+              className='absolute w-full h-full opacity-0'
             />
-            <label className="w-full p-2 rounded-md text-center">
+            <label className='w-full p-2 rounded-md text-center'>
               {option}
             </label>
           </div>

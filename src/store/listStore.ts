@@ -13,5 +13,5 @@ interface ListStore {
 /** Declaracion del hook para el estado global de la lista de museos */
 export const useListStore = create<ListStore>((set) => ({
   museums: data, // Lista de museos
-  setMuseums: (museums) => set({ museums }), // Actualizar lista
+  setMuseums: (museums) => set({ museums }) // Actualizar lista
 }))

@@ -9,7 +9,7 @@ import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
 /**
  * Componente del formulario principal
  * Obtiene los valores: Zona, Tema, Días de servicio, Precio
- * @returns {JSX.Element} Elemento del formulario
+ * @returns {React.ReactElement} Elemento del formulario
  * @see useFormStore
  * @see useSubmitForm
  * @see Checkbox
@@ -17,10 +17,9 @@ import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
  * @see Selector
  * @see Switch
  */
-function Form() {
-
+export default function Form (): React.ReactElement {
   // Estado global del formulario
-  const { 
+  const {
     zoneToggle,
     zone,
     theme,
@@ -42,8 +41,8 @@ function Form() {
   const { isPending, handleSubmit } = useSubmitForm()
 
   return (
-    <div className="grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0">
-      <form onSubmit={handleSubmit} id='form' className="grid gap-5 w-full">
+    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0'>
+      <form onSubmit={handleSubmit} id='form' className='grid gap-5 w-full'>
         <Selector
           options={ZONE_VALUES}
           name='zonas'
@@ -79,8 +78,8 @@ function Form() {
           />
         </div>
         <button
-          className="place-self-center w-min text-primary-100 bg-transparent border border-solid border-prtext-primary-100 hover:bg-prtext-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="submit"
+          className='place-self-center w-min text-primary-100 bg-transparent border border-solid border-prtext-primary-100 hover:bg-prtext-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+          type='submit'
           disabled={isPending}
         >
           {isPending ? 'Buscando...' : 'Buscar'}
@@ -89,5 +88,3 @@ function Form() {
     </div>
   )
 }
-
-export default Form

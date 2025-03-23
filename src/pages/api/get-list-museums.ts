@@ -16,10 +16,10 @@ interface getListMuseumsProps {
 /**
  * Endpoint para obtener la lista de museos filtrada
  * @async
- * @returns {Response} Respuesta de la petición con la lista de museos filtrada
+ * @returns {Promise<Response>} Respuesta de la petición con la lista de museos filtrada
  * @param {getListMuseumsProps} props Propiedades de la petición
  */
-export async function GET({ request }: getListMuseumsProps) {
+export async function GET ({ request }: getListMuseumsProps): Promise<Response> {
   // Obtener los parámetros de búsqueda
   const { url } = request
   const { searchParams } = new URL(url)
@@ -33,15 +33,18 @@ export async function GET({ request }: getListMuseumsProps) {
     // Filtrar los museos por los parámetros de búsqueda
     const filteredData = data.filter((museum) => {
       // Descartar por zona
-      if (zona && museum.zone !== zona) return false
+      if (zona !== undefined && museum.zone !== zona) return false
       // Descartar por tema
-      if (tema && museum.theme !== tema) return false
+      if (tema !== undefined && museum.theme !== tema) return false
       // Descartar por días
-      if (dias && !dias.some(day => museum.days.includes(day))) return false
+      if (
+        dias !== undefined &&
+        !dias.some(day => museum.days.includes(day))
+      ) return false
       // Descartar por precio
       if (
-        precio
-        && (precio === 'gratis'
+        precio !== undefined &&
+        (precio === 'gratis'
           ? museum.price.regular > 0
           : museum.price.regular === 0
         )
@@ -51,27 +54,26 @@ export async function GET({ request }: getListMuseumsProps) {
     })
     // Retornar los resultados
     return new Response(JSON.stringify(filteredData), {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     })
-  
   } catch (error) {
     if (error instanceof ZodError) {
       // Retornar error 400 si los parámetros no son válidos
       return new Response(JSON.stringify({
         message: 'Parámetros de búsqueda inválidos',
-        error: error.errors,
+        error: error.errors
       }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
     }
   }
   // Retornar error 500 si ocurre un error inesperado
   return new Response(JSON.stringify({
     message: 'Error inesperado',
-    error: new UnespectedError('Error inesperado'),
+    error: new UnespectedError('Error inesperado')
   }), {
-    status: 500,
+    status: 500
   })
 }
 
@@ -84,5 +86,5 @@ const querySchema = z.object({
     .transform((value) => value.split(';').map((day) => day.trim()))
     .pipe(z.enum(DAYS_VALUES).array())
     .optional(),
-  precio: z.literal('gratis').optional(),
+  precio: z.literal('gratis').optional()
 }).strict()

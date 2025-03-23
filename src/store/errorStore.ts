@@ -11,5 +11,5 @@ interface ErrorStoreProps {
 /** Declaración del estado global del error */
 export const useErrorStore = create<ErrorStoreProps>((set) => ({
   errorState: false,
-  setError: (errorState) => set({ errorState }),
+  setError: (errorState) => set({ errorState })
 }))

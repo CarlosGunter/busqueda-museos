@@ -1,4 +1,4 @@
-import Toggle from "@/components/form/Toggle"
+import Toggle from '@/components/form/Toggle'
 
 /**
  * Interface para las props del checkbox
@@ -26,10 +26,10 @@ interface CheckboxProps<T extends readonly string[]> {
  * Genera un selector multiple de opciones vertical con un toggle
  * El toggle habilita/deshabilita el checkbox
  * @param {CheckboxProps} props Propiedades del checkbox
- * @returns {JSX.Element} Elemento checkbox
+ * @returns {React.ReactElement} Elemento checkbox
  * @see Toggle
  */
-export default function Checkbox<T extends readonly string[]>({
+export default function Checkbox<T extends readonly string[]> ({
   options,
   name,
   title,
@@ -38,13 +38,12 @@ export default function Checkbox<T extends readonly string[]>({
   selected,
   selectControl,
   defaultSelected
-}: CheckboxProps<T>) {
-
+}: CheckboxProps<T>): React.ReactElement {
   /**
    * Función que se ejecuta al cambiar los valores del checkbox
    * @param value Valor de la opción seleccionada
    */
-  const handleChange = (value: string) => {
+  const handleChange = (value: string): void => {
     let newSelected: Set<string> = new Set(selected)
     // Agrega/elimina la opción seleccionada
     isCheckT && newSelected.has(value)
@@ -70,7 +69,7 @@ export default function Checkbox<T extends readonly string[]>({
   }
 
   return (
-    <div className="grid gap-1 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm">
+    <div className='grid gap-1 p-3 rounded-xl bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm'>
       <Toggle
         name={name}
         text={title}
@@ -78,22 +77,22 @@ export default function Checkbox<T extends readonly string[]>({
         toggleChange={toggleControl}
       />
       <div
-      className={`grid rounded-xl p-1 bg-bg-200`}
+        className='grid rounded-xl p-1 bg-bg-200'
       >
         {options.map((option, i) => (
           <div
-          key={option + i}
-          className="relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-100 selector-check-bg"
+            key={`${option}-${i}`}
+            className='relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-100 selector-check-bg'
           >
             <input
-              type="checkbox"
+              type='checkbox'
               name={name}
               value={option}
               checked={isCheckT && selected.has(option)}
               onChange={() => handleChange(option)}
-              className="absolute w-full h-full opacity-0"
+              className='absolute w-full h-full opacity-0'
             />
-            <label className="w-full p-2 rounded-md text-center">{option}</label>
+            <label className='w-full p-2 rounded-md text-center'>{option}</label>
           </div>
         ))}
       </div>

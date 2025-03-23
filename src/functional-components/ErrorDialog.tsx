@@ -1,8 +1,8 @@
-import { useErrorStore } from "@/store/errorStore"
+import { useErrorStore } from '@/store/errorStore'
 
-export default function ErrorDialog() {
-  const { errorState } = useErrorStore();
-  const handleReturn = () => {
+export default function ErrorDialog (): React.ReactElement {
+  const { errorState } = useErrorStore()
+  const handleReturn = (): void => {
     useErrorStore.setState({ errorState: false })
   }
 

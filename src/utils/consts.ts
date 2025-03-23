@@ -8,7 +8,7 @@ export const THEME_VALUES = [
   'Ciencia',
   'Arte',
   'Historia',
-  'Cultura',
+  'Cultura'
 ] as const
 export const DAYS_VALUES = [
   'Lunes',

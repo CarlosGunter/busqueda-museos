@@ -45,5 +45,5 @@ export const useFormStore = create<FormStoreProps>((set) => ({
   setDays: (days) => set({ days }),
   resetDays: () => set({ days: new Set<string>(['Domingo']) }),
   priceToggle: false,
-  setPriceToggle: (priceToggle) => set({ priceToggle }),
+  setPriceToggle: (priceToggle) => set({ priceToggle })
 }))

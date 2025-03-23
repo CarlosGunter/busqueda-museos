@@ -1,5 +1,5 @@
-import { GeneralError } from "@/errors"
-import type { TestMuseo } from "@/types"
+import { GeneralError } from '@/errors'
+import type { TestMuseo } from '@/types'
 
 interface getFilteredMuseumsProps {
   /** Valor zona obtenido del Form */
@@ -19,22 +19,24 @@ interface getFilteredMuseumsProps {
  * @returns {Promise<TestMuseo | never>} Lista de museos filtrados
  * @throws {GeneralError} Error al obtener los museos filtrados
  */
-export const getFilteredMuseums = async (params: getFilteredMuseumsProps) => {
+export const getFilteredMuseums = async (
+  params: getFilteredMuseumsProps
+): Promise<TestMuseo[]> | never => {
   try {
     // Crear los query params de la URL
     const urlParams = new URLSearchParams()
     Object.entries(params).forEach(([key, value]) => {
-      if (value) urlParams.append(key, value)
+      if (typeof value === 'string') urlParams.append(key, value)
     })
     // Llamada a la API
-    const res = await fetch(`/api/get-list-museums?${urlParams}`)
+    const res = await fetch(`/api/get-list-museums?${urlParams.toString()}`)
     // Lanzar un error si no se puede obtener la lista de museos
-    if (!res.ok)
+    if (!res.ok) {
       throw new GeneralError(`Error ${res.status}: ${res.statusText}`)
+    }
     // Transformar la respuesta y retornar los datos
     const data = await res.json() as TestMuseo[]
     return data
-
   } catch (error) {
     // console.log(error) /** @todo Temporal, quitar */
     throw new GeneralError('Error al obtener los museos filtrados')
