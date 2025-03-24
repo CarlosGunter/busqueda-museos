@@ -1,6 +1,6 @@
 import { data } from '@/lib/data/test'
-import { z, ZodError } from 'zod'
-import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
+import { ZodError } from 'zod'
+import { querySchema } from '@/lib/schemas/searchSchema'
 import { UnespectedError } from '@/errors'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
@@ -24,7 +24,6 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
   const { url } = request
   const { searchParams } = new URL(url)
   const params = Object.fromEntries(searchParams.entries())
-  console.log(url) /** @todo Temporal, quitar */
   try {
     // Validar los parámetros de búsqueda
     const parsedParams = querySchema.parse(params)
@@ -76,15 +75,3 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     status: 500
   })
 }
-
-/** Declaración del esquema de consulta */
-const querySchema = z.object({
-  zona: z.enum(ZONE_VALUES).optional(),
-  tema: z.enum(THEME_VALUES).optional(),
-  dias: z
-    .string()
-    .transform((value) => value.split(';').map((day) => day.trim()))
-    .pipe(z.enum(DAYS_VALUES).array())
-    .optional(),
-  precio: z.literal('gratis').optional()
-}).strict()

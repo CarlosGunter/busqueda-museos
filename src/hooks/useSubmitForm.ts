@@ -27,15 +27,15 @@ export function useSubmitForm (): {
       const formData = new FormData(e.currentTarget)
       // Obtener los valores de los campos del formulario
       const currentZone = formData.get('zonasToggle') === 'on'
-        ? formData.get('zonas')?.toString()
-        : undefined
-      const currentTheme = formData.get('tema')?.toString()
+        ? formData.get('zonas')
+        : null
+      const currentTheme = formData.get('tema')
       const selectedDays = formData.get('diasToggle') === 'on'
-        ? Array.from(formData.getAll('dias'), day => day.toString()).join(';')
-        : undefined
+        ? Array.from(formData.getAll('dias'))
+        : null
       const currentPrice = formData.get('precioToggle') === 'on'
         ? 'gratis'
-        : undefined
+        : null
       // Crear un objeto con los parámetros de búsqueda
       const params = {
         zona: currentZone,
