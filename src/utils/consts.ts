@@ -1,3 +1,5 @@
+import { data } from '@/lib/data/test'
+
 export const ZONE_VALUES = [
   'Norte',
   'Sur',
@@ -19,3 +21,7 @@ export const DAYS_VALUES = [
   'Sabado',
   'Domingo'
 ] as const
+
+export const TOTAL_MUSEUMS = data.length
+export const MAX_RESULTS = 2
+export const MAX_PAGES = Math.ceil(TOTAL_MUSEUMS / MAX_RESULTS)
