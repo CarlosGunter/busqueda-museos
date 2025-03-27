@@ -2,6 +2,8 @@ import { data } from '@/lib/data/test'
 import { ZodError } from 'zod'
 import { querySchema } from '@/lib/schemas/searchSchema'
 import { UnespectedError } from '@/errors'
+import type { TestMuseo } from '@/types'
+import { MAX_RESULTS } from '@/utils/consts'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
 
@@ -28,18 +30,25 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     // Validar los parámetros de búsqueda
     const parsedParams = querySchema.parse(params)
     // Obtener los parámetros de búsqueda después de validarlos
-    const { zona, tema, dias, precio } = parsedParams
+    const { zona, tema, dias, precio, page } = parsedParams
+    // Variables para el filtrado de museos
+    const filteredData: TestMuseo[] = [] // Lista de museos filtrada
+    let flag = false // Determina si el muse se agrega a la lista
+    let ignoredResults = 0 // Cantidad de resultados válidos
     // Filtrar los museos por los parámetros de búsqueda
-    const filteredData = data.filter((museum) => {
+    for (const museum of data) {
+      // Detener la búsqueda si se alcanza el límite de resultados
+      if (page !== undefined && filteredData.length >= MAX_RESULTS) break
+
       // Descartar por zona
-      if (zona !== undefined && museum.zone !== zona) return false
+      if (zona !== undefined && museum.zone !== zona) continue
       // Descartar por tema
-      if (tema !== undefined && museum.theme !== tema) return false
+      if (tema !== undefined && museum.theme !== tema) continue
       // Descartar por días
       if (
         dias !== undefined &&
         !dias.some(day => museum.days.includes(day))
-      ) return false
+      ) continue
       // Descartar por precio
       if (
         precio !== undefined &&
@@ -47,10 +56,19 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
           ? museum.price.regular > 0
           : museum.price.regular === 0
         )
-      ) return false
-      // Museo que cumple con los parámetros de búsqueda
-      return true
-    })
+      ) continue
+
+      // Cambiar el flag a true si está en el rango de resultados
+      if (
+        page !== undefined &&
+        ignoredResults < (page - 1) * MAX_RESULTS
+      ) ignoredResults++
+      else flag = true
+      // Descartar si no está en el rango de resultados
+      if (!flag) continue
+      // Agregar museo que cumple con los parámetros de búsqueda
+      filteredData.push(museum)
+    }
     // Retornar los resultados
     return new Response(JSON.stringify(filteredData), {
       headers: { 'Content-Type': 'application/json' }

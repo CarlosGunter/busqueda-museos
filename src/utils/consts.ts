@@ -23,5 +23,5 @@ export const DAYS_VALUES = [
 ] as const
 
 export const TOTAL_MUSEUMS = data.length
-export const MAX_RESULTS = 5
+export const MAX_RESULTS = 2
 export const MAX_PAGES = Math.ceil(TOTAL_MUSEUMS / MAX_RESULTS)
