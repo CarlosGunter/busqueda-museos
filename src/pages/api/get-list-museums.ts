@@ -60,11 +60,13 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     }
 
     // Obtener solo los resultados de la página actual
-    if (page !== undefined) {
+    if (page !== undefined && filteredData.length > 0) {
+      // Calcular el rango de resultados para la página solicitada
       const start = ((page - 1) * MAX_RESULTS)
       const end = (page * MAX_RESULTS)
+      // Obtener los resultados de la página solicitada
       const paginatedMuseums = filteredData.slice(start, end)
-      // Error si los resultados no son suficientes para la pagina solicitada
+      // Error si la pagina excede el número de resultados
       if (paginatedMuseums.length === 0) {
         throw new UnespectedPage(
           'No se encontraron resultados para la página solicitada'
