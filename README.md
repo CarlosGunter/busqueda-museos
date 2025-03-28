@@ -4,6 +4,8 @@ Este proyecto tiene el objetivo de facilitar a las personas la búsqueda de muse
 
 La idea fue planteado para el proyecto de la materia de Sistemas expertos.
 
+![Demo de la página](./src/assets/demo.png)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
