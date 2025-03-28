@@ -1,7 +1,7 @@
 import { data } from '@/lib/data/test'
 import { ZodError } from 'zod'
 import { querySchema } from '@/lib/schemas/searchSchema'
-import { UnespectedError } from '@/errors'
+import { UnespectedError, UnespectedPage } from '@/errors'
 import type { TestMuseo } from '@/types'
 import { MAX_RESULTS } from '@/utils/consts'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
@@ -33,12 +33,10 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     const { zona, tema, dias, precio, page } = parsedParams
     // Variables para el filtrado de museos
     const filteredData: TestMuseo[] = [] // Lista de museos filtrada
-    let flag = false // Determina si el muse se agrega a la lista
-    let ignoredResults = 0 // Cantidad de resultados válidos
     // Filtrar los museos por los parámetros de búsqueda
     for (const museum of data) {
       // Detener la búsqueda si se alcanza el límite de resultados
-      if (page !== undefined && filteredData.length >= MAX_RESULTS) break
+      if (page !== undefined && filteredData.length >= page * MAX_RESULTS) break
 
       // Descartar por zona
       if (zona !== undefined && museum.zone !== zona) continue
@@ -57,18 +55,26 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
           : museum.price.regular === 0
         )
       ) continue
-
-      // Cambiar el flag a true si está en el rango de resultados
-      if (
-        page !== undefined &&
-        ignoredResults < (page - 1) * MAX_RESULTS
-      ) ignoredResults++
-      else flag = true
-      // Descartar si no está en el rango de resultados
-      if (!flag) continue
       // Agregar museo que cumple con los parámetros de búsqueda
       filteredData.push(museum)
     }
+
+    // Obtener solo los resultados de la página actual
+    if (page !== undefined) {
+      const start = ((page - 1) * MAX_RESULTS)
+      const end = (page * MAX_RESULTS)
+      const paginatedMuseums = filteredData.slice(start, end)
+      // Error si los resultados no son suficientes para la pagina solicitada
+      if (paginatedMuseums.length === 0) {
+        throw new UnespectedPage(
+          'No se encontraron resultados para la página solicitada'
+        )
+      }
+      return new Response(JSON.stringify(paginatedMuseums), {
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+
     // Retornar los resultados
     return new Response(JSON.stringify(filteredData), {
       headers: { 'Content-Type': 'application/json' }
@@ -79,6 +85,16 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
       return new Response(JSON.stringify({
         message: 'Parámetros de búsqueda inválidos',
         error: error.errors
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+    if (error instanceof UnespectedPage) {
+      // Retornar error 400 si la página solicitada no existe
+      return new Response(JSON.stringify({
+        message: 'Página inexistente',
+        error: error.message
       }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
