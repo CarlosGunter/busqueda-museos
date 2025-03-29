@@ -13,17 +13,28 @@ interface getFilteredMuseumsProps {
   /** Valor precio obtenido del Form */
   precio: string | null
 }
+interface getFilteredMuseumsResponse {
+  /** Lista de museos filtrados */
+  results: TestMuseo[]
+  /** Informacion de paginación */
+  info: {
+    /** Página actual */
+    page: number
+    /** Total de páginas */
+    totalPages?: number
+  }
+}
 
 /**
  * Función que llama a la API para obtener la lista de museos filtrados
  * @async
  * @param params URLSearchParams
- * @returns {Promise<TestMuseo[]> | never} Lista de museos filtrados
+ * @returns {Promise<getFilteredMuseumsResponse> | never} Lista de museos filtrados
  * @throws {GeneralError} Error al obtener los museos filtrados
  */
 export const getFilteredMuseums = async (
   params: getFilteredMuseumsProps
-): Promise<TestMuseo[]> | never => {
+): Promise<getFilteredMuseumsResponse> | never => {
   try {
     // Remover los parámetros de búsqueda nulos
     const cleanParams = Object.fromEntries(
@@ -42,7 +53,7 @@ export const getFilteredMuseums = async (
       throw new GeneralError(`Error ${res.status}: ${res.statusText}`)
     }
     // Transformar la respuesta y retornar los datos
-    const data = await res.json() as TestMuseo[]
+    const data = await res.json() as getFilteredMuseumsResponse
     return data
   } catch (error) {
     if (error instanceof ZodError) {

@@ -5,6 +5,10 @@ import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES, MAX_PAGES } from '@/utils/const
 export const querySchema = z.object({
   zona: z.enum(ZONE_VALUES).optional(),
   tema: z.enum(THEME_VALUES).optional(),
+  /** Arreglo de días seleccionados
+   * Se transforma el valor a un arreglo
+   * para realizar el filtrado
+   */
   dias: z
     .string()
     .transform((value) => value.split(';').map((day) => day.trim()))
@@ -22,10 +26,26 @@ export const querySchema = z.object({
 export const querySchemaFront = z.object({
   zona: z.enum(ZONE_VALUES).optional(),
   tema: z.enum(THEME_VALUES).optional(),
+  /** Arreglo de días seleccionados
+   * Se transforma el valor a un string separado por ';'
+   * para enviar a través de la URL
+   */
   dias: z
     .array(z.enum(DAYS_VALUES))
     .transform((value) => value.join(';'))
     .pipe(z.string())
     .optional(),
-  precio: z.literal('gratis').optional()
+  /** Parámetro de solo entrada gratuito */
+  precio: z.literal('gratis').optional(),
+  /** Número de página solicitada */
+  page: z
+    .number()
+    .int().min(1).max(MAX_PAGES)
+    .transform((value) => value.toString())
+    .pipe(z.string())
+    .optional(),
+  /** Solicitar número total de páginas, solo recibe el valor 'true' */
+  totalPages: z
+    .literal('true')
+    .optional()
 }).strict()
