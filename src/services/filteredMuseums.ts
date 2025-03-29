@@ -1,17 +1,9 @@
 import { GeneralError } from '@/errors'
-import { ZodError } from 'zod'
 import type { TestMuseo } from '@/types'
-import { querySchemaFront } from '@/lib/schemas/searchSchema'
 
 interface getFilteredMuseumsProps {
-  /** Valor zona obtenido del Form */
-  zona: FormDataEntryValue | null
-  /** Valor tema obtenido del Form */
-  tema: FormDataEntryValue | null
-  /** Valor días obtenido del Form */
-  dias: FormDataEntryValue[] | null
-  /** Valor precio obtenido del Form */
-  precio: string | null
+  /** Query params del filtrado */
+  params: string
 }
 interface getFilteredMuseumsResponse {
   /** Lista de museos filtrados */
@@ -28,26 +20,16 @@ interface getFilteredMuseumsResponse {
 /**
  * Función que llama a la API para obtener la lista de museos filtrados
  * @async
- * @param params URLSearchParams
+ * @param params Query params del filtrado
  * @returns {Promise<getFilteredMuseumsResponse> | never} Lista de museos filtrados
  * @throws {GeneralError} Error al obtener los museos filtrados
  */
 export const getFilteredMuseums = async (
-  params: getFilteredMuseumsProps
+  { params }: getFilteredMuseumsProps
 ): Promise<getFilteredMuseumsResponse> | never => {
   try {
-    // Remover los parámetros de búsqueda nulos
-    const cleanParams = Object.fromEntries(
-      Object.entries(params).filter(([, value]) => value)
-    )
-    // Validar los parámetros de búsqueda
-    const parsedParams = querySchemaFront.parse(cleanParams)
-    // Crear los query params de la URL
-    const urlParams = new URLSearchParams(
-      parsedParams as Record<string, string>
-    )
     // Llamada a la API
-    const res = await fetch(`/api/get-list-museums?${urlParams.toString()}`)
+    const res = await fetch(`/api/get-list-museums?${params}`)
     // Lanzar un error si no se puede obtener la lista de museos
     if (!res.ok) {
       throw new GeneralError(`Error ${res.status}: ${res.statusText}`)
@@ -56,9 +38,6 @@ export const getFilteredMuseums = async (
     const data = await res.json() as getFilteredMuseumsResponse
     return data
   } catch (error) {
-    if (error instanceof ZodError) {
-      throw new GeneralError('Parámetros de búsqueda no válidos')
-    }
     throw new GeneralError('Error al obtener los museos filtrados')
   }
 }

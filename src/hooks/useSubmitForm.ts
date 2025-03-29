@@ -2,6 +2,7 @@ import { getFilteredMuseums } from '@/services/filteredMuseums'
 import { useListStore } from '@/store/listStore'
 import { useErrorStore } from '@/store/errorStore'
 import { useTransition } from 'react'
+import { paramsValidation } from '@/lib/validators/searchValidation'
 
 /**
  * Custom hook para manejar el evento submit del formulario
@@ -41,11 +42,17 @@ export function useSubmitForm (): {
         zona: currentZone,
         tema: currentTheme,
         dias: selectedDays,
-        precio: currentPrice
+        precio: currentPrice,
+        page: 1,
+        totalPages: true
       }
       try {
+        // Validar los parámetros de búsqueda
+        const parsedParams = paramsValidation(params)
         // Obtener los resultados de la búsqueda llamando a la API
-        const { results, info } = await getFilteredMuseums(params)
+        const { results, info } = await getFilteredMuseums({
+          params: parsedParams
+        })
         // Actualizar el estado global de la lista de museos
         useListStore.setState({ museums: results })
         /** @todo Temporal */
