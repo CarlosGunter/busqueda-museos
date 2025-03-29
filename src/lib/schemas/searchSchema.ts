@@ -58,6 +58,8 @@ export const querySchemaFront = z.object({
     .optional(),
   /** Solicitar número total de páginas, solo recibe el valor 'true' */
   totalPages: z
-    .literal('true')
+    .boolean()
+    .transform((value) => (value ? 'true' : undefined))
+    .pipe(z.literal('true'))
     .optional()
 }).strict()
