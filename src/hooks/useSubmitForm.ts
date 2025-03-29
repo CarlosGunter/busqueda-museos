@@ -45,7 +45,7 @@ export function useSubmitForm (): {
       }
       try {
         // Obtener los resultados de la búsqueda llamando a la API
-        const results = await getFilteredMuseums(params)
+        const { results, info } = await getFilteredMuseums(params)
         // Actualizar el estado global de la lista de museos
         useListStore.setState({ museums: results })
         /** @todo Temporal */
