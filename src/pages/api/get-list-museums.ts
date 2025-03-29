@@ -17,9 +17,13 @@ interface getListMuseumsProps {
 
 /**
  * Endpoint para obtener la lista de museos filtrada
+ * Retona un objeto JSON con la lista de museos filtrada
+ * y la información de la paginación que se requiera
  * @async
- * @returns {Promise<Response>} Respuesta de la petición con la lista de museos filtrada
+ * @returns {Promise<Response>} Respuesta de la petición
  * @param {getListMuseumsProps} props Propiedades de la petición
+ * Puede recibir los parámetros de búsqueda definidos en el esquema de consulta
+ * @see {querySchema} Esquema de consulta
  */
 export async function GET ({ request }: getListMuseumsProps): Promise<Response> {
   // Obtener los parámetros de búsqueda
@@ -30,13 +34,17 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     // Validar los parámetros de búsqueda
     const parsedParams = querySchema.parse(params)
     // Obtener los parámetros de búsqueda después de validarlos
-    const { zona, tema, dias, precio, page } = parsedParams
+    const { zona, tema, dias, precio, page, totalPages } = parsedParams
     // Variables para el filtrado de museos
     const filteredData: TestMuseo[] = [] // Lista de museos filtrada
     // Filtrar los museos por los parámetros de búsqueda
     for (const museum of data) {
       // Detener la búsqueda si se alcanza el límite de resultados
-      if (page !== undefined && filteredData.length >= page * MAX_RESULTS) break
+      if (
+        page !== undefined &&
+        totalPages === undefined &&
+        filteredData.length >= page * MAX_RESULTS
+      ) break
 
       // Descartar por zona
       if (zona !== undefined && museum.zone !== zona) continue
@@ -72,13 +80,25 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
           'No se encontraron resultados para la página solicitada'
         )
       }
-      return new Response(JSON.stringify(paginatedMuseums), {
+      // Calcular el número total de páginas
+      const numberOfPages = Math.ceil(filteredData.length / MAX_RESULTS)
+      // Retornar los resultados paginados y el número total de páginas
+      return new Response(JSON.stringify({
+        results: paginatedMuseums,
+        info: {
+          page,
+          ...(totalPages !== undefined && { totalPages: numberOfPages })
+        }
+      }), {
         headers: { 'Content-Type': 'application/json' }
       })
     }
 
     // Retornar los resultados
-    return new Response(JSON.stringify(filteredData), {
+    return new Response(JSON.stringify({
+      results: filteredData,
+      info: { page: 1 }
+    }), {
       headers: { 'Content-Type': 'application/json' }
     })
   } catch (error) {

@@ -3,7 +3,9 @@ import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES, MAX_PAGES } from '@/utils/const
 
 /** Declaración del esquema de consulta a la API */
 export const querySchema = z.object({
+  /** Zona de búsqueda */
   zona: z.enum(ZONE_VALUES).optional(),
+  /** Tema de búsqueda */
   tema: z.enum(THEME_VALUES).optional(),
   /** Arreglo de días seleccionados
    * Se transforma el valor a un arreglo
@@ -14,17 +16,27 @@ export const querySchema = z.object({
     .transform((value) => value.split(';').map((day) => day.trim()))
     .pipe(z.enum(DAYS_VALUES).array())
     .optional(),
+  /** Parámetro de solo entrada gratuito */
   precio: z.literal('gratis').optional(),
+  /** Número de página solicitada */
   page: z
     .string()
     .transform((value) => parseInt(value))
     .pipe(z.number().int().min(1).max(MAX_PAGES))
+    .optional(),
+  /** Solicitar número total de páginas, solo recibe el valor 'true' */
+  totalPages: z
+    .literal('true')
+    .transform(() => true)
+    .pipe(z.boolean())
     .optional()
 }).strict()
 
 /** Declaración del esquema de consulta Frontend */
 export const querySchemaFront = z.object({
+  /** Zona de búsqueda */
   zona: z.enum(ZONE_VALUES).optional(),
+  /** Tema de búsqueda */
   tema: z.enum(THEME_VALUES).optional(),
   /** Arreglo de días seleccionados
    * Se transforma el valor a un string separado por ';'
