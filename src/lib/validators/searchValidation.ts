@@ -15,7 +15,9 @@ interface paramsValidationProps {
   totalPages?: boolean
 }
 
-export function paramsValidation (params: paramsValidationProps): string | never {
+export function paramsValidation (
+  params: paramsValidationProps
+): URLSearchParams | never {
   // Remover los parámetros de búsqueda nulos
   const cleanParams = Object.fromEntries(
     Object.entries(params).filter(([, value]) => value)
@@ -30,5 +32,5 @@ export function paramsValidation (params: paramsValidationProps): string | never
     parsedParams.data as Record<string, string>
   )
   // Retornar los parámetros de búsqueda
-  return urlParams.toString()
+  return urlParams
 }

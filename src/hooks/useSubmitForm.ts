@@ -51,7 +51,7 @@ export function useSubmitForm (): {
         const parsedParams = paramsValidation(params)
         // Obtener los resultados de la búsqueda llamando a la API
         const { results, info } = await getFilteredMuseums({
-          params: parsedParams
+          params: parsedParams.toString()
         })
         // Actualizar el estado global de la lista de museos y su paginación
         useListStore.setState({

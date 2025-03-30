@@ -18,9 +18,9 @@ interface ListStore {
   /** Función que actualiza la última página */
   setLastPage: (lastPage: number) => void
   /** Query de busqueda */
-  query: string
+  query: URLSearchParams
   /** Función que actualiza la query de busqueda */
-  setQuery: (query: string) => void
+  setQuery: (query: URLSearchParams) => void
 }
 
 /** Declaracion del hook para el estado global de la lista de museos */
@@ -31,6 +31,6 @@ export const useListStore = create<ListStore>((set) => ({
   setPage: (page) => set({ page }), // Actualizar página
   lastPage: MAX_PAGES, // Última página
   setLastPage: (lastPage) => set({ lastPage }), // Actualizar última página
-  query: '', // Query de busqueda
-  setQuery: (query) => set({ query }) // Actualizar query
+  query: new URLSearchParams(), // Query de busqueda
+  setQuery: (query: URLSearchParams) => set({ query }) // Actualizar query
 }))
