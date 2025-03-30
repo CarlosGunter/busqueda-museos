@@ -53,8 +53,13 @@ export function useSubmitForm (): {
         const { results, info } = await getFilteredMuseums({
           params: parsedParams
         })
-        // Actualizar el estado global de la lista de museos
-        useListStore.setState({ museums: results })
+        // Actualizar el estado global de la lista de museos y su paginación
+        useListStore.setState({
+          museums: results,
+          page: info.page,
+          lastPage: info.totalPages,
+          query: parsedParams
+        })
         /** @todo Temporal */
         console.log({ currentZone, currentTheme, selectedDays, currentPrice })
         // Hacer scroll hacia la lista de museos
