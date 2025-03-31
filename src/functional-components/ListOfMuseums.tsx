@@ -1,5 +1,6 @@
 import CardMuseum from '@f-components/CardMuseum'
 import { useListStore } from '@/store/listStore'
+import Pagination from '@f-components/Pagination'
 
 /**
  * Componente que crea la lista de los resultados de busqueda de museos
@@ -22,6 +23,7 @@ export default function ListOfMuseums (): React.ReactElement {
         : (
           <p className='min-h-25'>No se encontraron museos.</p>
           )}
+      {(museums.length > 0) && <Pagination />}
     </main>
   )
 }
