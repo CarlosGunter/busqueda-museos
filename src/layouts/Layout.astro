@@ -2,9 +2,6 @@
 import '@/styles/global.css'
 import Cover from '@/components/Cover.astro'
 import cover from '@/assets/cover.webp'
-import ErrorDialog from '@f-components/ErrorDialog'
-import Form from '@f-components/Form'
-import FloatButton from '@/components/FloatButton.astro'
 ---
 
 <!doctype html>
@@ -24,13 +21,8 @@ import FloatButton from '@/components/FloatButton.astro'
 			alt=""
 			fetchpriority="high"
 		/> -->
-		<ErrorDialog client:load />
-		<FloatButton />
 		<Cover image={cover.src} title="Museos CDMX" />
-		<div class="px-0.5 m-auto md:flex md:items-start md:max-w-300">
-			<Form client:load />
-			<slot />
-		</div>
+		<slot />
 	</body>
 </html>
 
