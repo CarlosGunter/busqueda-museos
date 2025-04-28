@@ -4,14 +4,21 @@ import { z } from 'zod'
 import { getFilteredMuseums } from '@/services/filteredMuseums'
 import { useTransition } from 'react'
 
-export function usePagination () {
+interface usePaginationReturn {
+  page: number
+  lastPage: number
+  goToPage: (newPage: number) => void
+  isPending: boolean
+}
+
+export function usePagination (): usePaginationReturn {
   const [isPending, startTransition] = useTransition()
   const { page, lastPage, query } = useListStore(store => store)
   const { setPage } = useListStore(state => state)
   const { setError } = useErrorStore(state => state)
   const toPageSchema = z.number().min(1).max(lastPage)
 
-  const goToPage = (newPage: number) => {
+  const goToPage = (newPage: number): void => {
     startTransition(async () => {
       // Validar el nuevo número de página
       if (!toPageSchema.safeParse(newPage).success) {
@@ -45,5 +52,5 @@ export function usePagination () {
     })
   }
 
-  return { page, lastPage, goToPage }
+  return { page, lastPage, goToPage, isPending }
 }
