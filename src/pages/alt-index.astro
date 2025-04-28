@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Questions from '@/functional-components/Questions'
+import ErrorDialog from '@f-components/ErrorDialog'
+import ListOfMuseums from '@f-components/ListOfMuseums'
+---
+
+<Layout>
+  <ErrorDialog client:load />
+  <Questions client:load />
+  <div class="px-0.5 m-auto md:flex md:items-start md:max-w-300">
+    <ListOfMuseums client:load />
+  </div>
+</Layout>
