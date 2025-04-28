@@ -21,6 +21,9 @@ export const DAYS_VALUES = [
   'Sabado',
   'Domingo'
 ] as const
+export const DAYS_DEFAULT = new Set([
+  'Domingo'
+] as const)
 
 export const TOTAL_MUSEUMS = data.length
 export const MAX_RESULTS = 2

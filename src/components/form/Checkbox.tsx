@@ -1,4 +1,5 @@
 import Toggle from '@/components/form/Toggle'
+import { useState } from 'react'
 
 /**
  * Interface para las props del checkbox
@@ -10,22 +11,18 @@ interface CheckboxProps<T extends readonly string[]> {
   name: string
   /** Texto de la UI que identifica al checkbox */
   title: string
-  /** Estado del checkbox (habilitado/deshabilitado) */
-  isCheckT: boolean
-  /** Función que administra el toggle del checkbox */
-  toggleControl: (isChecked: boolean) => void
-  /** Opciones seleccionadas del checkbox */
-  selected: Set<string>
-  /** Función que administra las opciones del checkbox */
-  selectControl: (selected: Set<string>) => void
   /** Opciones seleccionadas por defecto */
-  defaultSelected: Set<string>
+  defaultSelected: Set<T[number]>
 }
 
 /**
  * Genera un selector multiple de opciones vertical con un toggle
  * El toggle habilita/deshabilita el checkbox
  * @param {CheckboxProps} props Propiedades del checkbox
+ * @param {T} props.options Opciones del checkbox
+ * @param {string} props.name Nombre del checkbox
+ * @param {string} props.title Texto de la UI que identifica al checkbox
+ * @param {Set<T[number]>} props.defaultSelected Opciones por defecto
  * @returns {React.ReactElement} Elemento checkbox
  * @see Toggle
  */
@@ -33,18 +30,19 @@ export default function Checkbox<T extends readonly string[]> ({
   options,
   name,
   title,
-  isCheckT,
-  toggleControl,
-  selected,
-  selectControl,
   defaultSelected
 }: CheckboxProps<T>): React.ReactElement {
+  // Estado del checkbox
+  const [isCheckT, toggleControl] = useState<boolean>(false)
+  // Estado de las opciones seleccionadas
+  const [selected, selectControl] = useState<Set<T[number]>>(defaultSelected)
+
   /**
    * Función que se ejecuta al cambiar los valores del checkbox
    * @param value Valor de la opción seleccionada
    */
-  const handleChange = (value: string): void => {
-    let newSelected: Set<string> = new Set(selected)
+  const handleChange = (value: T[number]): void => {
+    let newSelected: Set<T[number]> = new Set(selected)
     // Agrega/elimina la opción seleccionada
     isCheckT && newSelected.has(value)
       ? newSelected.delete(value) // Elimina

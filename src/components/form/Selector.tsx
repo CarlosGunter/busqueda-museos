@@ -1,4 +1,5 @@
 import Toggle from '@/components/form/Toggle'
+import { useState } from 'react'
 
 /**
  * Interface para las props del selector
@@ -10,20 +11,18 @@ interface SelectorProps<T extends readonly string[]> {
   name: string
   /** Texto de la UI que identifica al selector */
   title: string
-  /** Estado del selector (habilitado/deshabilitado) */
-  isCheckT: boolean
-  /** Función que administra el toggle del selector */
-  toggleControl: (isChecked: boolean) => void
-  /** Opción seleccionada del selector */
-  selected: string
-  /** Función que administra las opciones del selector */
-  selectControl: (selected: string) => void
+  /** Opción seleccionada por defecto  */
+  defaultSelected?: T[number]
 }
 
 /**
  * Genera un selector de opciones vertical con un toggle y sus opciones
  * El toggle habilita/deshabilita el selector
  * @param {SelectorProps} props Propiedades del selector
+ * @param {T} props.options Opciones del selector
+ * @param {string} props.name Nombre del selector
+ * @param {string} props.title Texto de la UI que identifica al selector
+ * @param {T[number]} [props.defaultSelected] Opción seleccionada por defecto
  * @returns {React.ReactElement} Elemento selector
  * @see Toggle
  */
@@ -31,16 +30,17 @@ export default function Selector<T extends readonly string[]> ({
   options,
   name,
   title,
-  isCheckT,
-  selected,
-  toggleControl,
-  selectControl
+  defaultSelected = options[0]
 }: SelectorProps<T>): React.ReactElement {
+  // Estado del selector
+  const [isCheckT, toggleControl] = useState<boolean>(false)
+  // Estado de la opción seleccionada
+  const [selected, selectControl] = useState<T[number]>(defaultSelected)
   /**
    * Función que se ejecuta al cambiar de opción en el selector
    * @param value Valor de la opción seleccionada
    */
-  const handleChange = (value: string): void => {
+  const handleChange = (value: T[number]): void => {
     // Selecciona la opción
     selectControl(value) // Selecciona la opción
     toggleControl(true) // Activa el toggle

@@ -1,10 +1,10 @@
-import { useFormStore } from '@/store/formStore'
 import Checkbox from '@/components/form/Checkbox'
 import DropDown from '@/components/form/DropDown'
 import Selector from '@/components/form/Selector'
 import Switch from '@/components/form/Toggle'
 import { useSubmitForm } from '@/hooks/useSubmitForm'
-import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
+import { DAYS_VALUES, DAYS_DEFAULT, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
+import { useState } from 'react'
 
 /**
  * Componente del formulario principal
@@ -18,25 +18,8 @@ import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
  * @see Switch
  */
 export default function Form (): React.ReactElement {
-  // Estado global del formulario
-  const {
-    zoneToggle,
-    zone,
-    theme,
-    daysToggle,
-    days,
-    priceToggle
-  } = useFormStore(state => (state))
-  // Funciones para modificar el estado global del formulario
-  const {
-    setZoneToggle,
-    setZone,
-    setTheme,
-    setDaysToggle,
-    setDays,
-    defaultDays,
-    setPriceToggle
-  } = useFormStore(state => (state))
+  // Estado de los días seleccionados
+  const [priceToggle, setPriceToggle] = useState<boolean>(false)
   // Custom hook para manejar el evento submit del formulario
   const { isPending, handleSubmit } = useSubmitForm()
 
@@ -47,27 +30,17 @@ export default function Form (): React.ReactElement {
           options={ZONE_VALUES}
           name='zonas'
           title='Zona'
-          isCheckT={zoneToggle}
-          toggleControl={setZoneToggle}
-          selected={zone}
-          selectControl={setZone}
         />
         <DropDown
           options={THEME_VALUES}
           name='tema'
           title='Tema'
-          selected={theme}
-          onChange={setTheme}
         />
         <Checkbox
           options={DAYS_VALUES}
           name='dias'
           title='Dias'
-          isCheckT={daysToggle}
-          toggleControl={setDaysToggle}
-          selected={days}
-          defaultSelected={defaultDays}
-          selectControl={setDays}
+          defaultSelected={DAYS_DEFAULT}
         />
         <div className='rounded-xl p-3 bg-gradient-to-r from-primary-100 to-primary-200 shadow-md inset-shadow-sm'>
           <Switch
