@@ -13,12 +13,12 @@ export default function Pagination (): React.ReactElement {
       >
         <span>Anterior</span>
       </button>
-      <ul className='flex gap-2'>
+      <ul className='flex gap-2 overflow-x-auto max-w-40 md:max-w-60 lg:max-w-110'>
         {Array.from({ length: lastPage }, (_, index) => (
           <li
             key={index}
             onClick={() => goToPage(index + 1)}
-            className={`flex items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
             ${page === index + 1 ? 'bg-primary-200 text-white' : ''}`}
           >
             {index + 1}
