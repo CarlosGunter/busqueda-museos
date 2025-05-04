@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { Museum } from '@/types'
 import { data } from '@/lib/data/museums'
-import { MAX_PAGES, MAX_RESULTS } from '@/utils/consts'
+import { MAX_PAGES, MAX_RESULTS } from '@/lib/consts'
 
 /** Props del estado global de la lista de museos */
 interface ListStore {

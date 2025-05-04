@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES, MAX_PAGES } from '@/utils/consts'
+import { DAYS_VALUES, THEME_VALUES, ZONE_VALUES, MAX_PAGES } from '@/lib/consts'
 
 /** Declaración del esquema de consulta a la API */
 export const querySchema = z.object({

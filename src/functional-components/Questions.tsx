@@ -1,7 +1,7 @@
 import DropDown from '@/components/form/DropDown'
 import Selector from '@/components/form/Selector'
 import Checkbox from '@/components/form/Checkbox'
-import { DAYS_VALUES, DAYS_DEFAULT } from '@/utils/consts'
+import { DAYS_VALUES, DAYS_DEFAULT } from '@/lib/consts'
 import { useTransition } from 'react'
 
 export const ANSWER_1 = [

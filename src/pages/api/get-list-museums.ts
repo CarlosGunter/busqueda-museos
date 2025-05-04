@@ -3,7 +3,7 @@ import { ZodError } from 'zod'
 import { querySchema } from '@/lib/schemas/searchSchema'
 import { UnespectedError, UnespectedPage } from '@/errors'
 import type { Museum } from '@/types'
-import { MAX_RESULTS } from '@/utils/consts'
+import { MAX_RESULTS } from '@/lib/consts'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
 

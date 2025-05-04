@@ -3,7 +3,7 @@ import DropDown from '@/components/form/DropDown'
 import Selector from '@/components/form/Selector'
 import Switch from '@/components/form/Toggle'
 import { useSubmitForm } from '@/hooks/useSubmitForm'
-import { DAYS_VALUES, DAYS_DEFAULT, THEME_VALUES, ZONE_VALUES } from '@/utils/consts'
+import { DAYS_VALUES, DAYS_DEFAULT, THEME_VALUES, ZONE_VALUES } from '@/lib/consts'
 import { useState } from 'react'
 
 /**
