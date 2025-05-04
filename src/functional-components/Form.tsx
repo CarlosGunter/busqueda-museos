@@ -24,7 +24,7 @@ export default function Form (): React.ReactElement {
   const { isPending, handleSubmit } = useSubmitForm()
 
   return (
-    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0'>
+    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0 md:sticky md:top-5 md:z-10'>
       <form onSubmit={handleSubmit} id='form' className='grid gap-5 w-full'>
         <Selector
           options={ZONE_VALUES}
