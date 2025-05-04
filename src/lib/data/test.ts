@@ -1,6 +1,6 @@
-import { type TestMuseo } from '@/types.d'
+import type { Museum } from '@/types'
 
-export const data: TestMuseo[] = [
+export const data: Museum[] = [
   {
     id: 'tezozomoc',
     name: 'Museo Tezozómoc',

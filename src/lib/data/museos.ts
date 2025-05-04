@@ -1,4 +1,4 @@
-import type { Museo } from '@/types.d'
+import type { Museo } from '@/types'
 
 export const data: Museo[] = [
   {

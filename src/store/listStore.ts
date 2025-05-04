@@ -1,14 +1,14 @@
 import { create } from 'zustand'
-import type { TestMuseo } from '@/types'
-import { data } from '@/lib/data/test'
+import type { Museum } from '@/types'
+import { data } from '@/lib/data/museums'
 import { MAX_PAGES, MAX_RESULTS } from '@/utils/consts'
 
 /** Props del estado global de la lista de museos */
 interface ListStore {
   /** Lista de museos */
-  museums: TestMuseo[]
+  museums: Museum[]
   /** Función que administra la lista de museos */
-  setMuseums: (museums: TestMuseo[]) => void
+  setMuseums: (museums: Museum[]) => void
   /** Página actual */
   page: number
   /** Función que actualiza la página actual */

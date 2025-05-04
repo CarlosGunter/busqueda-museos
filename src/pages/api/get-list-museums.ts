@@ -1,8 +1,8 @@
-import { data } from '@/lib/data/test'
+import { data } from '@/lib/data/museums'
 import { ZodError } from 'zod'
 import { querySchema } from '@/lib/schemas/searchSchema'
 import { UnespectedError, UnespectedPage } from '@/errors'
-import type { TestMuseo } from '@/types'
+import type { Museum } from '@/types'
 import { MAX_RESULTS } from '@/utils/consts'
 // Evitar que astro genere una página estática y reciba parámetros de búsqueda
 export const prerender = false
@@ -36,7 +36,7 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
     // Obtener los parámetros de búsqueda después de validarlos
     const { zona, tema, dias, precio, page, totalPages } = parsedParams
     // Variables para el filtrado de museos
-    const filteredData: TestMuseo[] = [] // Lista de museos filtrada
+    const filteredData: Museum[] = [] // Lista de museos filtrada
     // Filtrar los museos por los parámetros de búsqueda
     for (const museum of data) {
       // Detener la búsqueda si se alcanza el límite de resultados

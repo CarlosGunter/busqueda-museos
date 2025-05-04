@@ -1,5 +1,5 @@
 import { GeneralError } from '@/errors'
-import type { TestMuseo } from '@/types'
+import type { Museum } from '@/types'
 
 interface getFilteredMuseumsProps {
   /** Query params del filtrado */
@@ -7,7 +7,7 @@ interface getFilteredMuseumsProps {
 }
 interface getFilteredMuseumsResponse {
   /** Lista de museos filtrados */
-  results: TestMuseo[]
+  results: Museum[]
   /** Informacion de paginación */
   info: {
     /** Página actual */

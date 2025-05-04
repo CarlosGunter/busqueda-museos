@@ -1,14 +1,14 @@
-import type { TestMuseo } from '@/types.d'
+import type { Museum } from '@/types'
 
 /**
  * Interface para las props del componente de museo
- * Definida en src/types.d como TestMuseo
- * @see TestMuseo
+ * Definida en src/types.d como Museum
+ * @see Museum
  */
 
 /**
  * Componente que muestra la información de un museo
- * @param {TestMuseo} props Propiedades del museo
+ * @param {Museum} props Propiedades del museo
  * @returns {React.ReactElement} Elemento del museo
  */
 export default function CardMuseum ({
@@ -20,7 +20,7 @@ export default function CardMuseum ({
   days,
   schedule,
   price
-}: TestMuseo): React.ReactElement {
+}: Museum): React.ReactElement {
   return (
     <article
       className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3'

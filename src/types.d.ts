@@ -6,7 +6,7 @@ export interface Museo {
 }
 
 /** Props del Test */
-export interface TestMuseo {
+export interface Museum {
   /** Identificador único del museo */
   id: string
   /** Nombre del museo */
