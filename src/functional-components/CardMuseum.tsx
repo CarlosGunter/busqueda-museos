@@ -23,10 +23,7 @@ export default function CardMuseum ({
 }: Museum): React.ReactElement {
   return (
     <article
-      className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3'
-      style={{
-        contentVisibility: 'auto'
-      }}
+      className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3 cont-visibility-auto'
     >
       <div className='relative h-45 overflow-hidden lg:col-start-4 lg:col-span-2 lg:row-[1] lg:h-auto'>
         <img

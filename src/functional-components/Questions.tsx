@@ -1,37 +1,17 @@
 import DropDown from '@/components/form/DropDown'
 import Selector from '@/components/form/Selector'
 import Checkbox from '@/components/form/Checkbox'
-import { DAYS_VALUES, DAYS_DEFAULT } from '@/lib/consts'
+import {
+  DICIPLINE_VALUES,
+  ACTIVITIES_VALUES,
+  LEARNING_TYPE_VALUES,
+  COMPANIONS_VALUES,
+  DAYS_VALUES,
+  DAYS_DEFAULT,
+  ZONE_VALUES,
+  BUDGET_VALUES
+} from '@/lib/consts'
 import { useTransition } from 'react'
-
-export const ANSWER_1 = [
-  'Arte',
-  'Historia',
-  'Lengua',
-  'Matematica',
-  'Geografia',
-  'Fisica',
-  'Quimica',
-  'Biologia'
-]
-export const ANSWER_2 = [
-  'Aire libre',
-  'Interiores',
-  'Ambos'
-]
-export const ANSWER_3 = [
-  'Visual',
-  'Auditivo',
-  'Kinestesico',
-  'Verbal',
-  'Interpersonal',
-  'Intrapersonal'
-]
-export const ANSWER_4 = [
-  'Niños',
-  'Adulto mayor',
-  'Ambos'
-]
 
 export function useFormQuestions (): {
   isPending: boolean
@@ -50,18 +30,24 @@ export function useFormQuestions (): {
     startTransition(() => {
       const formData = new FormData(e.currentTarget)
       // Obtener los valores de los campos del formulario
-      const question1 = formData.get('question1')
-      const question2 = formData.get('question2')
-      const question3 = formData.get('question3')
-      const question4 = formData.get('question4')
-      const selectedDays = Array.from(formData.getAll('dias'))
+      const diciplineField = formData.get('dicipline')
+      const activitiesField = formData.get('activitiesToggle') === 'on'
+        ? formData.get('activities')
+        : null
+      const learningTypeField = formData.get('learningType')
+      const companionsField = formData.get('companionsToggle') === 'on'
+        ? formData.get('companions')
+        : null
+      const daysField = formData.get('diasToggle') === 'on'
+        ? formData.getAll('dias')
+        : null
       // Crear un objeto con los parámetros de búsqueda
       const params = {
-        question1,
-        question2,
-        question3,
-        question4,
-        dias: selectedDays
+        dicipline: diciplineField,
+        activities: activitiesField,
+        learningType: learningTypeField,
+        companions: companionsField,
+        days: daysField
       }
       console.log(params)
     })
@@ -74,26 +60,26 @@ export default function Questions (): React.ReactElement {
   const { handleSubmit } = useFormQuestions()
 
   return (
-    <div className='grid place-items-center mx-auto max-w-130 p-4 rounded-xl mb-6 md:w-fit'>
+    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0 md:sticky md:top-5 md:z-10 lg:w-full'>
       <form className='grid gap-5 w-full' onSubmit={handleSubmit}>
         <DropDown
-          options={ANSWER_1}
-          name='question1'
-          title='¿Que campo de estudio te gusta más?'
+          options={DICIPLINE_VALUES}
+          name='dicipline'
+          title='¿Que diciplina de estudio te gusta más?'
         />
         <Selector
-          options={ANSWER_2}
-          name='question3'
-          title='Selecciona que tipo de actividades prefieres'
+          options={ACTIVITIES_VALUES}
+          name='activities'
+          title='Selecciona que tipo de actividades que prefieres'
         />
         <DropDown
-          options={ANSWER_3}
-          name='question2'
+          options={LEARNING_TYPE_VALUES}
+          name='learningType'
           title='¿Con que tipo de aprendizaje te identificas más?'
         />
         <Selector
-          options={ANSWER_4}
-          name='question4'
+          options={COMPANIONS_VALUES}
+          name='companions'
           title='¿Viajarás con niños o personas mayores?'
         />
         <Checkbox

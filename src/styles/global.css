@@ -33,6 +33,9 @@
       @apply bg-primary-100 text-white;
     }
   }
+  .cont-visibility-auto {
+    content-visibility: auto;
+  }
 }
 
 /* :root {

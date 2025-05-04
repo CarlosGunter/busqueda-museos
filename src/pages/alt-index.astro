@@ -7,8 +7,8 @@ import ListOfMuseums from '@f-components/ListOfMuseums'
 
 <Layout>
   <ErrorDialog client:load />
-  <Questions client:load />
-  <div class="px-0.5 m-auto md:flex md:items-start md:max-w-300">
+  <div class="relative px-0.5 m-auto md:flex md:items-start md:max-w-300">
+    <Questions client:load />
     <ListOfMuseums client:only />
   </div>
 </Layout>
