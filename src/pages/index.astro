@@ -1,16 +1,14 @@
 ---
-import ListOfMuseums from '@f-components/ListOfMuseums'
 import Layout from '@/layouts/Layout.astro'
+import Questions from '@/functional-components/Questions'
 import ErrorDialog from '@f-components/ErrorDialog'
-import Form from '@f-components/Form'
-import FloatButton from '@/components/FloatButton.astro'
+import ListOfMuseums from '@f-components/ListOfMuseums'
 ---
 
 <Layout>
-	<ErrorDialog client:load />
-	<FloatButton />
-	<div class="relative px-0.5 m-auto md:flex md:items-start md:max-w-300">
-		<Form client:load />
-		<ListOfMuseums client:only />
-	</div>
+  <ErrorDialog client:load />
+  <div class="relative px-0.5 m-auto md:flex md:items-start md:max-w-300">
+    <Questions client:load />
+    <ListOfMuseums client:only />
+  </div>
 </Layout>
