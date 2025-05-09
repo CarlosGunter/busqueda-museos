@@ -30,11 +30,5 @@ export const BUDGET_RULES = {
   min0_Max50: { min: 0, max: 50 },
   min50_Max100: { min: 50, max: 100 },
   min100_Max250: { min: 100, max: 250 },
-  min250_Max500: { min: 250, max: 500 },
-  min500: { min: 500, max: Infinity }
-}
-export const ACTIVITIES_RULES = {
-  libre: new Set<string>([]),
-  interiores: new Set<string>([]),
-  ambos: new Set<string>([])
+  min250_Max500: { min: 250, max: 500 }
 }

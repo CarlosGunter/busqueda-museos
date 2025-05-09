@@ -64,8 +64,7 @@ export const BUDGET_VALUES = [
   'min0_Max50',
   'min50_Max100',
   'min100_Max250',
-  'min250_Max500',
-  'min500'
+  'min250_Max500'
 ] as const
 
 // Formulario de filtros
