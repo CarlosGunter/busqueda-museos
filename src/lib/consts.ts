@@ -32,16 +32,16 @@ export const ZONE_VALUES = [
 export const DICIPLINE_VALUES = [
   'arte',
   'historia',
+  'ciencias_sociales',
   'lengua',
   'matematica',
   'geografia',
   'fisica',
-  'quimica',
   'biologia'
 ] as const
 export const ACTIVITIES_VALUES = [
   'libre',
-  'Interiores',
+  'interiores',
   'ambos'
 ] as const
 export const LEARNING_TYPE_VALUES = [
@@ -53,17 +53,19 @@ export const LEARNING_TYPE_VALUES = [
   'intrapersonal'
 ] as const
 export const COMPANIONS_VALUES = [
-  'niños',
+  'infante',
   'adulto_mayor',
-  'ambos'
+  'discapacidad',
+  'profesor',
+  'estudiante'
 ] as const
 export const BUDGET_VALUES = [
   'gratis',
-  '0 - 50',
-  '50 - 100',
-  '100 - 250',
-  '250 - 500',
-  '+500'
+  'min0_Max50',
+  'min50_Max100',
+  'min100_Max250',
+  'min250_Max500',
+  'min500'
 ] as const
 
 // Formulario de filtros
