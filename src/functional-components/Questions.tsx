@@ -25,7 +25,7 @@ export default function Questions (): React.ReactElement {
         <DropDown
           options={DISCIPLINE_VALUES}
           labels={DISCIPLINE_LABELS}
-          name='dicipline'
+          name='discipline'
           title='¿Que disciplina de estudio prefieres?'
         />
         <Checkbox
@@ -38,7 +38,7 @@ export default function Questions (): React.ReactElement {
         <Checkbox
           options={DAYS_VALUES}
           labels={DAYS_LABELS}
-          name='dias'
+          name='days'
           title='Selecciona los días que prefieres hacer tus visitas'
           defaultSelected={DAYS_DEFAULT}
           hiddenOptions
@@ -46,7 +46,7 @@ export default function Questions (): React.ReactElement {
         <Selector
           options={ZONE_VALUES}
           labels={ZONE_LABELS}
-          name='zonas'
+          name='zone'
           title='¿Que zona de la CDMX te gustaría visitar?'
         />
         <DropDown
@@ -57,7 +57,7 @@ export default function Questions (): React.ReactElement {
         />
 
         <button
-          className='place-self-center w-min text-primary-100 bg-transparent border border-solid border-prtext-primary-100 hover:bg-prtext-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+          className='place-self-center w-min text-primary-100 bg-transparent border border-solid border-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
           type='submit'
           disabled={isPending}
         >

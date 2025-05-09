@@ -1,8 +1,8 @@
 import { questionsSchema } from '../schemas/questionsSchema'
 
-interface paramsPersonalMuseoumsProps {
-  /** Diciplinas */
-  dicipline: FormDataEntryValue | null
+interface paramsPersonalMuseumsProps {
+  /** Disciplinas */
+  discipline: FormDataEntryValue | null
   /** Compañeros */
   companions: FormDataEntryValue[] | null
   /** Días */
@@ -18,7 +18,7 @@ interface paramsPersonalMuseoumsProps {
 }
 
 export async function paramsValidation (
-  params: paramsPersonalMuseoumsProps
+  params: paramsPersonalMuseumsProps
 ): Promise<URLSearchParams | never> {
   // Remover los parámetros de búsqueda nulos
   const cleanParams = Object.fromEntries(

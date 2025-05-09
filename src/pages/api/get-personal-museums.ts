@@ -1,7 +1,7 @@
 import { data } from '@/lib/data/museums'
 import {
   COMPANIONS_RULES,
-  DICIPLINE_RULES,
+  DISCIPLINE_RULES,
   ZONE_RULES,
   BUDGET_RULES
 } from '@/lib/data/rules-inference'
@@ -22,7 +22,7 @@ interface getListMuseumsProps {
 
 /**
  * Endpoint para obtener la lista de museos filtrada
- * Retona un objeto JSON con la lista de museos filtrada
+ * Retorna un objeto JSON con la lista de museos filtrada
  * y la información de la paginación que se requiera
  * @async
  * @returns {Promise<Response>} Respuesta de la petición
@@ -49,7 +49,7 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
 
   // Obtener los parámetros de búsqueda después de validarlos
   const {
-    dicipline,
+    discipline,
     companions,
     days,
     zone,
@@ -61,10 +61,10 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
   // MOTOR DE INFERENCIA
   const filteredData: Museum[] = []
   for (const museum of data) {
-    // Descartar por diciplina
+    // Descartar por disciplina
     if (
-      dicipline !== undefined &&
-      !museum.theme.some(theme => DICIPLINE_RULES[dicipline].has(theme))
+      discipline !== undefined &&
+      !museum.theme.some(theme => DISCIPLINE_RULES[discipline].has(theme))
     ) continue
 
     // Descartar por compañeros

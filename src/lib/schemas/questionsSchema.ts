@@ -8,10 +8,10 @@ import {
   MAX_PAGES
 } from '@/lib/consts'
 
-/** Declaracion del esquema de las preguntas al usuario */
+/** Declaración del esquema de las preguntas al usuario */
 export const questionsSchema = z.object({
-  /** Diciplinas */
-  dicipline: z.enum(DISCIPLINE_VALUES).optional(),
+  /** Disciplinas */
+  discipline: z.enum(DISCIPLINE_VALUES).optional(),
   /** Compañeros */
   companions: z
     .array(z.enum(COMPANIONS_VALUES))
@@ -43,10 +43,10 @@ export const questionsSchema = z.object({
     .optional()
 }).strict()
 
-/** Declaracion del esquema de los parametros de la API get-personal-museums */
+/** Declaración del esquema de los parámetros de la API get-personal-museums */
 export const personalMuseumsSchema = z.object({
-  /** Diciplinas */
-  dicipline: z.enum(DISCIPLINE_VALUES).optional(),
+  /** Disciplinas */
+  discipline: z.enum(DISCIPLINE_VALUES).optional(),
   /** Compañeros */
   companions: z
     .string()

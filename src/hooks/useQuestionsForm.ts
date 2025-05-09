@@ -25,21 +25,21 @@ export function useFormQuestions (): {
       const formData = new FormData(e.currentTarget)
 
       // Obtener los valores de los campos del formulario
-      const diciplineField = formData.get('dicipline')
+      const disciplineField = formData.get('discipline')
       const companionsField = formData.get('companionsToggle') === 'on'
         ? formData.getAll('companions')
         : null
-      const daysField = formData.get('diasToggle') === 'on'
-        ? formData.getAll('dias')
+      const daysField = formData.get('daysToggle') === 'on'
+        ? formData.getAll('days')
         : null
-      const zoneField = formData.get('zonasToggle') === 'on'
-        ? formData.get('zonas')
+      const zoneField = formData.get('zoneToggle') === 'on'
+        ? formData.get('zone')
         : null
       const budgetField = formData.get('budget')
 
       // Crear un objeto con los parámetros de búsqueda
       const params = {
-        dicipline: diciplineField,
+        discipline: disciplineField,
         companions: companionsField,
         days: daysField,
         zone: zoneField,
