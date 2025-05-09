@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # vscode local settings
 .vscode/settings.json
+
+# local files
+local
