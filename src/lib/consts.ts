@@ -1,13 +1,13 @@
 import { data } from '@/lib/data/museums'
 
 export const DAYS_VALUES = [
-  'lunes',
-  'martes',
-  'miercoles',
-  'jueves',
-  'viernes',
-  'sabado',
-  'domingo'
+  'Lunes',
+  'Martes',
+  'Miercoles',
+  'Jueves',
+  'Viernes',
+  'Sabado',
+  'Domingo'
 ] as const
 export const DAYS_LABELS = [
   'Lunes',
@@ -19,7 +19,7 @@ export const DAYS_LABELS = [
   'Domingo'
 ] as const
 export const DAYS_DEFAULT = new Set([
-  'domingo'
+  'Domingo'
 ] as const)
 export const ZONE_VALUES = [
   'norte',
