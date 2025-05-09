@@ -1,8 +1,8 @@
-import { getFilteredMuseums } from '@/services/filteredMuseums'
+import { getMuseumsService } from '@/services/filteredMuseums'
 import { useListStore } from '@/store/listStore'
 import { useErrorStore } from '@/store/errorStore'
 import { useTransition } from 'react'
-import { paramsValidation } from '@/lib/validators/searchValidation'
+import { paramsValidation } from '@/lib/validators/frontValidation'
 
 /**
  * Custom hook para manejar el evento submit del formulario
@@ -48,9 +48,10 @@ export function useSubmitForm (): {
       }
       try {
         // Validar los parámetros de búsqueda
-        const parsedParams = paramsValidation(params)
+        const parsedParams = await paramsValidation(params)
         // Obtener los resultados de la búsqueda llamando a la API
-        const { results, info } = await getFilteredMuseums({
+        const { results, info } = await getMuseumsService({
+          apiUrl: 'api/get-list-museums',
           params: parsedParams.toString()
         })
         // Actualizar el estado global de la lista de museos y su paginación
@@ -58,6 +59,7 @@ export function useSubmitForm (): {
           museums: results,
           page: info.page,
           lastPage: info.totalPages,
+          apiUrl: 'api/get-list-museums',
           query: parsedParams
         })
         /** @todo Temporal */

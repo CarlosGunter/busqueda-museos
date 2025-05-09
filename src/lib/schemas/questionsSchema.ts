@@ -16,7 +16,11 @@ export const questionsSchema = z.object({
   /** Actividades */
   activities: z.enum(ACTIVITIES_VALUES).optional(),
   /** Compañeros */
-  companions: z.enum(COMPANIONS_VALUES).optional(),
+  companions: z
+    .array(z.enum(COMPANIONS_VALUES))
+    .transform((value) => value.join(';'))
+    .pipe(z.string())
+    .optional(),
   /** Días */
   days: z
     .array(z.enum(DAYS_VALUES))
@@ -26,7 +30,20 @@ export const questionsSchema = z.object({
   /** Zona */
   zone: z.enum(ZONE_VALUES).optional(),
   /** Presupuesto */
-  budget: z.enum(BUDGET_VALUES).optional()
+  budget: z.enum(BUDGET_VALUES).optional(),
+  /** Número de página solicitada */
+  page: z
+    .number()
+    .int().min(1).max(MAX_PAGES)
+    .transform((value) => value.toString())
+    .pipe(z.string())
+    .optional(),
+  /** Solicitar número total de páginas, solo recibe el valor 'true' */
+  totalPages: z
+    .boolean()
+    .transform((value) => (value ? 'true' : undefined))
+    .pipe(z.literal('true'))
+    .optional()
 }).strict()
 
 /** Declaracion del esquema de los parametros de la API get-personal-museums */

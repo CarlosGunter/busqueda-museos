@@ -15,9 +15,9 @@ interface paramsValidationProps {
   totalPages?: boolean
 }
 
-export function paramsValidation (
+export async function paramsValidation (
   params: paramsValidationProps
-): URLSearchParams | never {
+): Promise<URLSearchParams | never> {
   // Remover los parámetros de búsqueda nulos
   const cleanParams = Object.fromEntries(
     Object.entries(params).filter(([, value]) => value)

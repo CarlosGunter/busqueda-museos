@@ -17,6 +17,8 @@ interface ListStore {
   lastPage: number
   /** Función que actualiza la última página */
   setLastPage: (lastPage: number) => void
+  /** URL de la API */
+  apiUrl: string
   /** Query de busqueda */
   query: URLSearchParams
   /** Función que actualiza la query de busqueda */
@@ -31,6 +33,8 @@ export const useListStore = create<ListStore>((set) => ({
   setPage: (page) => set({ page }), // Actualizar página
   lastPage: MAX_PAGES, // Última página
   setLastPage: (lastPage) => set({ lastPage }), // Actualizar última página
+  apiUrl: '/api/get-personal-museums', // URL de la API
+  setApiUrl: (apiUrl: string) => set({ apiUrl }), // Actualizar URL de la API
   query: new URLSearchParams(), // Query de busqueda
   setQuery: (query: URLSearchParams) => set({ query }) // Actualizar query
 }))
