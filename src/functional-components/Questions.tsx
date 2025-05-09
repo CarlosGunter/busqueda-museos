@@ -20,7 +20,7 @@ export default function Questions (): React.ReactElement {
   const { handleSubmit, isPending } = useFormQuestions()
 
   return (
-    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0 md:sticky md:top-5 md:z-10 lg:w-full'>
+    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 md:w-fit md:mx-0 md:my-2 md:sticky md:top-0 md:z-10 md:overflow-y-auto md:max-h-dvh md:no-scrollbar lg:w-full'>
       <form className='grid gap-5 w-full' onSubmit={handleSubmit}>
         <DropDown
           options={DISCIPLINE_VALUES}
@@ -57,7 +57,7 @@ export default function Questions (): React.ReactElement {
         />
 
         <button
-          className='place-self-center w-min text-primary-100 bg-transparent border border-solid border-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+          className='place-self-center w-min text-white bg-primary-200 shadow-md shadow-primary-200 hover:bg-primary-100 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none ease-linear transition-all duration-150'
           type='submit'
           disabled={isPending}
         >

@@ -36,6 +36,15 @@
   .cont-visibility-auto {
     content-visibility: auto;
   }
+  /* Hide scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 /* :root {
