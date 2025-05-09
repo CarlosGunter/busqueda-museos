@@ -49,7 +49,7 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
       // Descartar por zona
       if (zona !== undefined && museum.zone !== zona) continue
       // Descartar por tema
-      if (tema !== undefined && museum.theme !== tema) continue
+      if (tema !== undefined && !museum.theme.includes(tema)) continue
       // Descartar por días
       if (
         dias !== undefined &&

@@ -16,7 +16,7 @@ export interface Museum {
   /** Zona del museo */
   zone: string
   /** Tema del museo */
-  theme: string
+  theme: string[]
   /** Días de apertura del museo */
   days: string[]
   /** Horario del museo */
