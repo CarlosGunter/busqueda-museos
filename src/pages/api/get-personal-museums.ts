@@ -50,7 +50,6 @@ export async function GET ({ request }: getListMuseumsProps): Promise<Response> 
   // Obtener los parámetros de búsqueda después de validarlos
   const {
     dicipline,
-    activities,
     companions,
     days,
     zone,

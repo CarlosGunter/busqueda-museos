@@ -7,6 +7,8 @@ import { useState } from 'react'
 interface SelectorProps<T extends readonly string[]> {
   /** Opciones del selector */
   options: T
+  /** Labels de las opciones */
+  labels?: readonly string[]
   /** Nombre con el que se recupera el valor del selector */
   name: string
   /** Texto de la UI que identifica al selector */
@@ -28,6 +30,7 @@ interface SelectorProps<T extends readonly string[]> {
  */
 export default function Selector<T extends readonly string[]> ({
   options,
+  labels = options,
   name,
   title,
   defaultSelected = options[0]
@@ -70,8 +73,11 @@ export default function Selector<T extends readonly string[]> ({
               onChange={e => handleChange(e.target.value)}
               className='absolute w-full h-full opacity-0'
             />
-            <label className='w-full p-2 rounded-md text-center'>
-              {option}
+            <label
+              className='w-full p-2 rounded-md text-center'
+              htmlFor={option}
+            >
+              {labels[i]}
             </label>
           </div>
         ))}

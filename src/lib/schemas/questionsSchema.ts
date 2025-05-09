@@ -1,7 +1,6 @@
 import z from 'zod'
 import {
-  DICIPLINE_VALUES,
-  ACTIVITIES_VALUES,
+  DISCIPLINE_VALUES,
   COMPANIONS_VALUES,
   DAYS_VALUES,
   ZONE_VALUES,
@@ -12,9 +11,7 @@ import {
 /** Declaracion del esquema de las preguntas al usuario */
 export const questionsSchema = z.object({
   /** Diciplinas */
-  dicipline: z.enum(DICIPLINE_VALUES).optional(),
-  /** Actividades */
-  activities: z.enum(ACTIVITIES_VALUES).optional(),
+  dicipline: z.enum(DISCIPLINE_VALUES).optional(),
   /** Compañeros */
   companions: z
     .array(z.enum(COMPANIONS_VALUES))
@@ -49,9 +46,7 @@ export const questionsSchema = z.object({
 /** Declaracion del esquema de los parametros de la API get-personal-museums */
 export const personalMuseumsSchema = z.object({
   /** Diciplinas */
-  dicipline: z.enum(DICIPLINE_VALUES).optional(),
-  /** Actividades */
-  activities: z.enum(ACTIVITIES_VALUES).optional(),
+  dicipline: z.enum(DISCIPLINE_VALUES).optional(),
   /** Compañeros */
   companions: z
     .string()

@@ -7,6 +7,8 @@ import { useState } from 'react'
 interface CheckboxProps<T extends readonly string[]> {
   /** Opciones del checkbox */
   options: T
+  /** Labels de las opciones */
+  labels?: readonly string[]
   /** Nombre con el que se recupera el valor del checkbox */
   name: string
   /** Texto de la UI que identifica al checkbox */
@@ -30,6 +32,7 @@ interface CheckboxProps<T extends readonly string[]> {
  */
 export default function Checkbox<T extends readonly string[]> ({
   options,
+  labels = options,
   name,
   title,
   defaultSelected,
@@ -97,7 +100,12 @@ export default function Checkbox<T extends readonly string[]> ({
               onChange={() => handleChange(option)}
               className='absolute w-full h-full opacity-0'
             />
-            <label className='w-full p-2 rounded-md text-center'>{option}</label>
+            <label
+              className='w-full p-2 rounded-md text-center'
+              htmlFor={option}
+            >
+              {labels[i]}
+            </label>
           </div>
         ))}
       </div>

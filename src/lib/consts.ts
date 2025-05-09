@@ -12,10 +12,10 @@ export const DAYS_VALUES = [
 export const DAYS_LABELS = [
   'Lunes',
   'Martes',
-  'Miercoles',
+  'Miércoles',
   'Jueves',
   'Viernes',
-  'Sabado',
+  'Sábado',
   'Domingo'
 ] as const
 export const DAYS_DEFAULT = new Set([
@@ -27,9 +27,15 @@ export const ZONE_VALUES = [
   'poniente',
   'oriente'
 ] as const
+export const ZONE_LABELS = [
+  'Norte',
+  'Sur',
+  'Poniente',
+  'Oriente'
+] as const
 
 // Formulario de preferencias
-export const DICIPLINE_VALUES = [
+export const DISCIPLINE_VALUES = [
   'arte',
   'historia',
   'ciencias_sociales',
@@ -39,18 +45,15 @@ export const DICIPLINE_VALUES = [
   'fisica',
   'biologia'
 ] as const
-export const ACTIVITIES_VALUES = [
-  'libre',
-  'interiores',
-  'ambos'
-] as const
-export const LEARNING_TYPE_VALUES = [
-  'visual',
-  'auditivo',
-  'kinestesico',
-  'verbal',
-  'interpersonal',
-  'intrapersonal'
+export const DISCIPLINE_LABELS = [
+  'Arte',
+  'Historia',
+  'Ciencias Sociales',
+  'Lengua',
+  'Matemática',
+  'Geografía',
+  'Física',
+  'Biología'
 ] as const
 export const COMPANIONS_VALUES = [
   'infante',
@@ -59,12 +62,26 @@ export const COMPANIONS_VALUES = [
   'profesor',
   'estudiante'
 ] as const
+export const COMPANIONS_LABELS = [
+  'Infante',
+  'Adulto Mayor',
+  'Discapacidad',
+  'Profesor',
+  'Estudiante'
+] as const
 export const BUDGET_VALUES = [
   'gratis',
   'min0_Max50',
   'min50_Max100',
   'min100_Max250',
   'min250_Max500'
+] as const
+export const BUDGET_LABELS = [
+  'Gratis',
+  '$0 - $50',
+  '$50 - $100',
+  '$100 - $250',
+  '$250 - $500'
 ] as const
 
 // Formulario de filtros

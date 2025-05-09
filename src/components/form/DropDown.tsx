@@ -6,6 +6,8 @@ import { useState } from 'react'
 interface DropDownProps<T extends readonly string[]> {
   /** Opciones del selector */
   options: T
+  /** Labels de las opciones */
+  labels?: readonly string[]
   /** Nombre con el que se recupera el valor del selector */
   name: string
   /** Texto de la UI que identifica al selector */
@@ -19,6 +21,7 @@ interface DropDownProps<T extends readonly string[]> {
  */
 export default function DropDown<T extends readonly string[]> ({
   options,
+  labels = options,
   name,
   title
 }: DropDownProps<T>): React.ReactElement {
@@ -35,12 +38,12 @@ export default function DropDown<T extends readonly string[]> ({
         className='relative h-10 rounded-md cursor-pointer bg-primary-100 p-1.5 focus-visible:outline-none'
       >
         <option value=''>Todos</option>
-        {options.map(value => (
+        {options.map((value, i) => (
           <option
             key={value}
             value={value}
           >
-            {value}
+            {labels[i]}
           </option>
         ))}
       </select>
