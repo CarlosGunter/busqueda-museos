@@ -33,6 +33,7 @@ export default function Questions (): React.ReactElement {
           name='dias'
           title='Selecciona los días que prefieres hacer tus visitas'
           defaultSelected={DAYS_DEFAULT}
+          hiddenOptions
         />
         <Selector
           options={ZONE_VALUES}

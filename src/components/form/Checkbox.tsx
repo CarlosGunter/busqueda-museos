@@ -13,6 +13,8 @@ interface CheckboxProps<T extends readonly string[]> {
   title: string
   /** Opciones seleccionadas por defecto */
   defaultSelected: Set<T[number]>
+  /** Oculta las opciones si el toggle está desactivado */
+  hiddenOptions?: boolean
 }
 
 /**
@@ -30,7 +32,8 @@ export default function Checkbox<T extends readonly string[]> ({
   options,
   name,
   title,
-  defaultSelected
+  defaultSelected,
+  hiddenOptions = false
 }: CheckboxProps<T>): React.ReactElement {
   // Estado del checkbox
   const [isCheckT, toggleControl] = useState<boolean>(false)
@@ -75,7 +78,11 @@ export default function Checkbox<T extends readonly string[]> ({
         toggleChange={toggleControl}
       />
       <div
-        className='grid rounded-xl p-1 bg-bg-200'
+        className={
+          `rounded-xl p-1 bg-bg-200 ${
+            hiddenOptions && !isCheckT ? 'hidden' : 'grid'
+          }`
+        }
       >
         {options.map((option, i) => (
           <div
