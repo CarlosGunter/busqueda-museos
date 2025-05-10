@@ -1,4 +1,5 @@
 import { usePagination } from '@/hooks/usePagination'
+import { Arrow } from '@/assets/svg'
 
 /**
  * Componente de paginación
@@ -15,9 +16,11 @@ export default function Pagination (): React.ReactElement {
         type='button'
         disabled={page === 1}
         onClick={() => goToPage(page - 1)}
-        className='flex items-center justify-center rounded-xl p-2 text-primary-300 hover:text-primary-200 focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        className='flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
       >
-        <span>Anterior</span>
+        <span className='w-full p-2'>
+          <Arrow />
+        </span>
       </button>
       <ul className='flex gap-2 overflow-x-auto max-w-40 md:max-w-60 lg:max-w-110'>
         {Array.from({ length: lastPage }, (_, index) => (
@@ -35,9 +38,11 @@ export default function Pagination (): React.ReactElement {
         type='button'
         disabled={page === lastPage}
         onClick={() => goToPage(page + 1)}
-        className='flex items-center justify-center rounded-xl p-2 text-primary-300 hover:text-primary-200 focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        className='flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
       >
-        <span>Siguiente</span>
+        <span className='rotate-180 w-full p-2'>
+          <Arrow />
+        </span>
       </button>
     </nav>
   )
