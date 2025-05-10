@@ -12,10 +12,17 @@ export default function ErrorDialog (): React.ReactElement {
   }
 
   return (
-    <section className={`z-20 items-center bg-bg-100 backdrop-blur-2xl rounded-lg shadow-lg p-4 m-4 ${errorState ? 'fixed' : 'hidden'}`}>
-      <h2>Error</h2>
+    <div className={`z-20 items-center bg-bg-200 border border-bg-300 inset-shadow inset-shadow-bg-300 rounded-lg shadow-lg p-4 m-4 top-0 left-0 ${errorState ? 'fixed' : 'hidden'}`}>
+      <h2 className='text-xl'>Error</h2>
       <p>Ocurrió un error. Inténtalo de nuevo o recarga la página.</p>
-      <button onClick={handleReturn}>Volver</button>
-    </section>
+      <button
+        className='grid place-items-center absolute top-1 right-1 cursor-pointer bg-accent-200 text-white text-sm w-6.5 h-6.5 rounded-full p-1 hover:bg-accent-100 focus:outline-none focus:ring-2 focus:ring-accent-400'
+        aria-label='Cerrar'
+        type='button'
+        onClick={handleReturn}
+      >
+        x
+      </button>
+    </div>
   )
 }
