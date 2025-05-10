@@ -51,7 +51,7 @@ export default function Form (): React.ReactElement {
           />
         </div>
         <button
-          className='place-self-center w-min text-primary-100 bg-transparent border border-solid border-prtext-primary-100 hover:bg-prtext-primary-100 hover:text-white hover:border-transparent hover:bg-primary-100 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+          className='place-self-center w-min text-white bg-primary-200 shadow-md shadow-primary-200 hover:bg-primary-100 font-bold text-sm px-4 py-2 rounded outline-none focus:outline-none ease-linear transition-all duration-150'
           type='submit'
           disabled={isPending}
         >

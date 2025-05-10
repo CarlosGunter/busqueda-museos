@@ -26,13 +26,13 @@ export default function Questions (): React.ReactElement {
           options={DISCIPLINE_VALUES}
           labels={DISCIPLINE_LABELS}
           name='discipline'
-          title='¿Que disciplina de estudio prefieres?'
+          title='¿Qué disciplina de estudio prefieres?'
         />
         <Checkbox
           options={COMPANIONS_VALUES}
           labels={COMPANIONS_LABELS}
           name='companions'
-          title='¿Tu o tus acompañantes pertenecen a estos grupos?'
+          title='¿Tú o tus acompañantes pertenecen a estos grupos?'
           defaultSelected={new Set([COMPANIONS_VALUES[0]])}
         />
         <Checkbox
@@ -47,7 +47,7 @@ export default function Questions (): React.ReactElement {
           options={ZONE_VALUES}
           labels={ZONE_LABELS}
           name='zone'
-          title='¿Que zona de la CDMX te gustaría visitar?'
+          title='¿Qué zona de la CDMX te gustaría visitar?'
         />
         <DropDown
           options={BUDGET_VALUES}
