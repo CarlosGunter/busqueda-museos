@@ -1,4 +1,5 @@
 import type { Museum } from '@/types'
+import { URL_IMAGES } from '@/config.museums'
 
 /**
  * Interface para las props del componente de museo
@@ -26,9 +27,9 @@ export default function CardMuseum ({
     >
       <div className='relative h-45 overflow-hidden lg:col-start-4 lg:col-span-2 lg:row-[1] lg:h-auto'>
         <img
-          src={`/images/museums/${id}.webp`}
+          src={`https://${URL_IMAGES}/${id}.webp`}
           onError={(e) => {
-            e.currentTarget.src = 'images/fallback-img.webp'
+            e.currentTarget.src = `https://${URL_IMAGES}/fallback-img.webp`
           }}
           alt={`${name} image`}
           className='absolute object-cover w-full h-full rounded-t-3xl lg:rounded-r-3xl lg:rounded-t-none lg:block'
