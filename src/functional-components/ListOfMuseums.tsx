@@ -3,7 +3,7 @@ import { useListStore } from '@/store/listStore'
 import Pagination from '@f-components/Pagination'
 
 /**
- * Componente que crea la lista de los resultados de busqueda de museos
+ * Componente que crea la lista de los resultados de búsqueda de museos
  * @returns {React.ReactElement} La lista de museos.
  * @see useListStore
  * @see CardMuseum

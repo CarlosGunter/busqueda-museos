@@ -1,5 +1,10 @@
 import { useErrorStore } from '@/store/errorStore'
 
+/**
+ * Componente que muestra un mensaje de error
+ * @returns {React.ReactElement} El mensaje de error.
+ * @see useErrorStore
+ */
 export default function ErrorDialog (): React.ReactElement {
   const { errorState } = useErrorStore()
   const handleReturn = (): void => {

@@ -1,5 +1,11 @@
 import { usePagination } from '@/hooks/usePagination'
 
+/**
+ * Componente de paginación
+ * @description Este componente se encarga de mostrar la paginación de los resultados de búsqueda de museos.
+ * @returns {React.ReactElement} Componente de paginación
+ * @see usePagination
+ */
 export default function Pagination (): React.ReactElement {
   const { page, lastPage, goToPage } = usePagination()
 

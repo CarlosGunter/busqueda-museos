@@ -17,10 +17,9 @@ export default function CardMuseum ({
   address,
   zone,
   theme,
-  days,
   schedule,
   price
-}: Museum): React.ReactElement {
+}: Omit<Museum, 'days'>): React.ReactElement {
   return (
     <article
       className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3'

@@ -22,7 +22,7 @@ interface getListMuseumsProps {
 
 /**
  * Endpoint para obtener la lista de museos filtrada
- * Retorna un objeto JSON con la lista de museos filtrada
+ * @description Retorna un objeto JSON con la lista de museos filtrada
  * y la información de la paginación que se requiera
  * @async
  * @returns {Promise<Response>} Respuesta de la petición

@@ -16,6 +16,15 @@ import {
   BUDGET_LABELS
 } from '@/lib/consts'
 
+/**
+ * Componente que crea un formulario.
+ * @description Este componente se encarga de mostrar el formulario de preguntas al usuario para filtrar los resultados de búsqueda de museos.
+ * @returns {React.ReactElement} El formulario de preguntas.
+ * @see useFormQuestions
+ * @see DropDown
+ * @see Selector
+ * @see Checkbox
+ */
 export default function Questions (): React.ReactElement {
   const { handleSubmit, isPending } = useFormQuestions()
 

@@ -6,12 +6,24 @@ import { useTransition } from 'react'
 import { tryCatch } from '@/lib/helpers/try-catch'
 
 interface usePaginationReturn {
+  /** Número de la página actual */
   page: number
+  /** Número de la última página */
   lastPage: number
+  /** Función para ir a una nueva página */
   goToPage: (newPage: number) => void
+  /** Indica si la petición está en curso */
   isPending: boolean
 }
 
+/**
+ * Hook para la paginación de museos
+ * @description Este hook se encarga de manejar la paginación de los museos.
+ * @returns {usePaginationReturn} Objeto con la información de la paginación y la función para ir a una nueva página.
+ * @see useListStore
+ * @see useErrorStore
+ * @see getMuseumsService
+ */
 export function usePagination (): usePaginationReturn {
   const [isPending, startTransition] = useTransition()
   const { page, lastPage, apiUrl, query } = useListStore(store => store)

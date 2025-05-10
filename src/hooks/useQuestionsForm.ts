@@ -5,6 +5,14 @@ import { useErrorStore } from '@/store/errorStore'
 import { getMuseumsService } from '@/services/filteredMuseums'
 import { useListStore } from '@/store/listStore'
 
+/**
+ * Hook para el formulario de preguntas
+ * @returns {Object} Objeto con el estado del formulario y la función para manejar el submit.
+ * @see useListStore
+ * @see useErrorStore
+ * @see getMuseumsService
+ * @see paramsValidation
+ */
 export function useFormQuestions (): {
   isPending: boolean
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void | never

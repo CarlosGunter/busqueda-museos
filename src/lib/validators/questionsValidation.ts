@@ -17,6 +17,14 @@ interface paramsPersonalMuseumsProps {
   totalPages: boolean
 }
 
+/**
+ * Función que valida los parámetros de búsqueda
+ * @description Esta función se encarga de limpiar los parámetros en falsy para validar la búsqueda que se envían a la API.
+ * @param {paramsPersonalMuseumsProps} params Parámetros de búsqueda
+ * @returns {Promise<URLSearchParams | never>} Parámetros de búsqueda validados
+ * @throws {ZodError} Error de validación
+ * @see questionsSchema
+ */
 export async function paramsValidation (
   params: paramsPersonalMuseumsProps
 ): Promise<URLSearchParams | never> {
