@@ -29,7 +29,7 @@ export default function CardMuseum ({
         <img
           src={`https://${URL_IMAGES}/${id}.webp`}
           onError={(e) => {
-            e.currentTarget.src = `https://${URL_IMAGES}/fallback-img.webp`
+            e.currentTarget.src = 'fallback-img.webp'
           }}
           alt={`${name} image`}
           className='absolute object-cover w-full h-full rounded-t-3xl lg:rounded-r-3xl lg:rounded-t-none lg:block'
