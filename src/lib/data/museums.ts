@@ -33,7 +33,7 @@ export const data: Museum[] = [
     id: 'azcapotzalco',
     name: 'Museo de Azcapotzalco',
     address: 'Hacienda del Rosario s/n, Col. Prados del Rosario, CP 02420, Azcapotzalco, Ciudad de México',
-    zone: 'azcapotzalco',
+    zone: 'Azcapotzalco',
     theme: [
       'Historia'
     ],
@@ -528,7 +528,7 @@ export const data: Museum[] = [
 
     ],
     schedule: [
-
+      'Cerrado por remodelación'
     ],
     price: {
       regular: 0,
