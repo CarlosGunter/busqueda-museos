@@ -1,5 +1,6 @@
 import type { Museum } from '@/types'
 import { URL_IMAGES } from '@/config.museums'
+import { Home, Location, Calendar, Cash, Navigation } from '@/assets/icons/svg'
 
 /**
  * Interface para las props del componente de museo
@@ -22,9 +23,8 @@ export default function CardMuseum ({
   price
 }: Omit<Museum, 'days'>): React.ReactElement {
   return (
-    <article
-      className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-3'
-    >
+    <article className='rounded-3xl bg-bg-light shadow-md md:text-lg lg:grid lg:grid-cols-5 lg:gap-3'>
+
       <div className='relative h-45 overflow-hidden lg:col-start-4 lg:col-span-2 lg:row-[1] lg:h-auto'>
         <img
           src={`https://${URL_IMAGES}/${id}.webp`}
@@ -45,30 +45,49 @@ export default function CardMuseum ({
           </span>
         </div>
       </div>
+
       <div className='grid gap-1.5 p-4 lg:col-span-3'>
-        <h2 className='text-lg font-bold'>{name}</h2>
-        <div className='hidden lg:flex gap-3 font-medium'>
-          <span className=''>
-            {price.regular === 0
-              ? 'Gratis'
-              : `$${price.regular} MXN`}
-          </span>
-          <span>⁝</span>
-          <span className=''>
-            {zone}
-          </span>
+
+        <h2 className='text-xl font-bold md:text-2xl'>{name}</h2>
+
+        <div className='hidden lg:flex gap-4 font-medium'>
+          <p className='flex gap-2 items-center'>
+            <span className='shrink-0 p-2 bg-bg-200 rounded-lg text-accent-200'>
+              <Cash />
+            </span>
+            <span>
+              {price.regular === 0
+                ? 'Gratis'
+                : `$${price.regular} MXN`}
+            </span>
+          </p>
+
+          <p className='flex gap-1 items-center'>
+            <span className='shrink-0 p-2 bg-bg-200 rounded-lg text-accent-200'>
+              <Navigation />
+            </span>
+            <span>{zone}</span>
+          </p>
         </div>
-        <p className='text-text-200 line-clamp-1'>{address}</p>
-        <div>
-          {
-            schedule.map((item, i) => (
-              <p key={`schedule${i}`} className='text-sm italic'>{item}</p>
-            ))
-          }
+
+        <p className='flex items-center gap-1 text-text-200'>
+          <span className='shrink-0'><Location /></span>
+          <span className='line-clamp-1 md:line-clamp-none'>{address}</span>
+        </p>
+
+        <div className='flex gap-1 items-center'>
+          <span className='shrink-0'><Calendar /></span>
+          <div>
+            {
+              schedule.map((item, i) => (
+                <p key={`schedule${i}`} className='text-sm italic'>{item}</p>
+              ))
+            }
+          </div>
         </div>
-        <p
-          className='text-sm my-1 w-fit'
-        >
+
+        <p className='flex gap-1 items-center text-sm my-1 w-fit'>
+          <span className='shrink-0'><Home /></span>
           {theme.join(', ')}
         </p>
       </div>

@@ -1,5 +1,5 @@
 import { usePagination } from '@/hooks/usePagination'
-import { Arrow } from '@/assets/svg'
+import { Arrow } from '@/assets/icons/svg'
 
 /**
  * Componente de paginación
