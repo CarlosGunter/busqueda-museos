@@ -2,6 +2,7 @@
 import '@/styles/global.css'
 import Cover from '@/components/Cover.astro'
 import cover from '@/assets/cover.webp'
+import Footer from '@/components/Footer.astro'
 ---
 
 <!doctype html>
@@ -23,6 +24,7 @@ import cover from '@/assets/cover.webp'
 		/> -->
 		<Cover image={cover.src} title="Museos CDMX" />
 		<slot />
+		<Footer />
 	</body>
 </html>
 
