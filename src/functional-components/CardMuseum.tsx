@@ -48,7 +48,10 @@ export default function CardMuseum ({
 
       <div className='grid gap-1.5 p-4 lg:col-span-3'>
 
-        <h2 className='text-xl font-bold md:text-2xl'>{name}</h2>
+        <div className='flex gap-2'>
+          <span className='w-1 bg-accent-200'>⁝</span>
+          <h2 className='text-xl text-accent-200 font-bold md:text-2xl'>{name}</h2>
+        </div>
 
         <div className='hidden lg:flex gap-4 font-medium'>
           <p className='flex gap-2 items-center'>
@@ -72,7 +75,7 @@ export default function CardMuseum ({
 
         <p className='flex items-center gap-1 text-text-200'>
           <span className='shrink-0'><Location /></span>
-          <span className='line-clamp-1 md:line-clamp-none'>{address}</span>
+          <span className='line-clamp-1 md:line-clamp-2'>{address}</span>
         </p>
 
         <div className='flex gap-1 items-center'>
