@@ -90,7 +90,7 @@ export default function Checkbox<T extends readonly string[]> ({
         {options.map((option, i) => (
           <div
             key={`${option}-${i}`}
-            className='relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-100 selector-check-bg'
+            className='relative h-10 grid place-items-center w-full rounded-md cursor-pointer hover:bg-bg-300 selector-check-bg'
           >
             <input
               type='checkbox'
