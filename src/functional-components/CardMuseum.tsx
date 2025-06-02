@@ -54,7 +54,7 @@ export default function CardMuseum ({
         </div>
 
         <div className='hidden mt-1.5 lg:flex gap-4 font-medium'>
-          <p className='flex gap-2 items-center'>
+          <p className='flex gap-1.5 items-center'>
             <span className='shrink-0 p-1.5 bg-bg-200 rounded-lg text-accent-200'>
               <Cash />
             </span>
@@ -65,7 +65,7 @@ export default function CardMuseum ({
             </span>
           </p>
 
-          <p className='flex gap-1 items-center'>
+          <p className='flex gap-1.5 items-center'>
             <span className='shrink-0 p-1.5 bg-bg-200 rounded-lg text-accent-200'>
               <Navigation />
             </span>
