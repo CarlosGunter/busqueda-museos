@@ -23,7 +23,7 @@ export default function CardMuseum ({
   price
 }: Omit<Museum, 'days'>): React.ReactElement {
   return (
-    <article className='rounded-3xl bg-bg-light shadow-md md:text-lg lg:grid lg:grid-cols-5 lg:gap-3'>
+    <article className='rounded-3xl bg-bg-light shadow-md lg:grid lg:grid-cols-5 lg:gap-2'>
 
       <div className='relative h-45 overflow-hidden lg:col-start-4 lg:col-span-2 lg:row-[1] lg:h-auto'>
         <img
@@ -46,16 +46,16 @@ export default function CardMuseum ({
         </div>
       </div>
 
-      <div className='grid gap-1.5 p-4 lg:col-span-3'>
+      <div className='grid gap-2 p-4 lg:col-span-3'>
 
         <div className='flex gap-2'>
           <span className='w-1 bg-accent-200'>⁝</span>
           <h2 className='text-xl text-accent-200 font-bold md:text-2xl'>{name}</h2>
         </div>
 
-        <div className='hidden lg:flex gap-4 font-medium'>
+        <div className='hidden mt-1.5 lg:flex gap-4 font-medium'>
           <p className='flex gap-2 items-center'>
-            <span className='shrink-0 p-2 bg-bg-200 rounded-lg text-accent-200'>
+            <span className='shrink-0 p-1.5 bg-bg-200 rounded-lg text-accent-200'>
               <Cash />
             </span>
             <span>
@@ -66,7 +66,7 @@ export default function CardMuseum ({
           </p>
 
           <p className='flex gap-1 items-center'>
-            <span className='shrink-0 p-2 bg-bg-200 rounded-lg text-accent-200'>
+            <span className='shrink-0 p-1.5 bg-bg-200 rounded-lg text-accent-200'>
               <Navigation />
             </span>
             <span>{zone}</span>
