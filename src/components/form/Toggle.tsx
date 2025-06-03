@@ -33,7 +33,7 @@ export default function Switch ({
         onChange={e => toggleChange(e.target.checked)}
         className='sr-only peer'
       />
-      <div className='relative w-9 h-5 bg-bg-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-100 peer-checked:border-primary-300 shadow-md' />
+      <div className='relative w-9 h-5 shrink-0 bg-bg-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[""] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-100 peer-checked:border-primary-300 shadow-md' />
     </label>
   )
 }
