@@ -88,7 +88,7 @@ export function useFormQuestions (): {
       // Actualizar el estado global de la lista de museos y su paginación
       await useListStore.setState({
         museums: results.results,
-        page: results.info.page,
+        currentPage: results.info.page,
         lastPage: results.info.totalPages,
         apiUrl: '/api/get-personal-museums',
         query: parsedParams

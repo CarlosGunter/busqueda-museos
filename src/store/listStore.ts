@@ -10,7 +10,7 @@ interface ListStore {
   /** Función que administra la lista de museos */
   setMuseums: (museums: Museum[]) => void
   /** Página actual */
-  page: number
+  currentPage: number
   /** Función que actualiza la página actual */
   setPage: (page: number) => void
   /** Última página disponible respecto a la busqueda actual */
@@ -29,8 +29,8 @@ interface ListStore {
 export const useListStore = create<ListStore>((set) => ({
   museums: data.slice(0, MAX_RESULTS), // Lista de museos
   setMuseums: (museums) => set({ museums }), // Actualizar lista
-  page: 1, // Página actual
-  setPage: (page) => set({ page }), // Actualizar página
+  currentPage: 1, // Página actual
+  setPage: (page) => set({ currentPage: page }), // Actualizar página
   lastPage: MAX_PAGES, // Última página
   setLastPage: (lastPage) => set({ lastPage }), // Actualizar última página
   apiUrl: '/api/get-personal-museums', // URL de la API

@@ -57,7 +57,7 @@ export function useSubmitForm (): {
         // Actualizar el estado global de la lista de museos y su paginación
         useListStore.setState({
           museums: results,
-          page: info.page,
+          currentPage: info.page,
           lastPage: info.totalPages,
           apiUrl: 'api/get-list-museums',
           query: parsedParams

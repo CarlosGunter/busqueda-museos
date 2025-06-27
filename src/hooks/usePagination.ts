@@ -7,13 +7,15 @@ import { tryCatch } from '@/lib/helpers/try-catch'
 
 interface usePaginationReturn {
   /** Número de la página actual */
-  page: number
+  currentPage: number
   /** Número de la última página */
   lastPage: number
   /** Función para ir a una nueva página */
   goToPage: (newPage: number) => void
   /** Indica si la petición está en curso */
   isPending: boolean
+  /** Rango de páginas a mostrar */
+  rangePages: number[]
 }
 
 /**
@@ -26,7 +28,7 @@ interface usePaginationReturn {
  */
 export function usePagination (): usePaginationReturn {
   const [isPending, startTransition] = useTransition()
-  const { page, lastPage, apiUrl, query } = useListStore(store => store)
+  const { currentPage, lastPage, apiUrl, query } = useListStore(store => store)
   const { setPage } = useListStore(state => state)
   const { setError } = useErrorStore(state => state)
   const toPageSchema = z.number().min(1).max(lastPage)
@@ -66,13 +68,27 @@ export function usePagination (): usePaginationReturn {
       // Actualizar el estado de la lista de museos y la paginación
       await useListStore.setState({
         museums: data.results,
-        page: data.info.page
+        currentPage: data.info.page
       })
     })
 
     // Hacer scroll hacia la lista de museos
-    window.location.href = '#list-museums'
+    // window.location.href = '#list-museums'
   }
 
-  return { page, lastPage, goToPage, isPending }
+  // Calcular el arreglo de páginas a mostrar
+  const rangePages = Array.from({ length: lastPage < 5 ? lastPage - 1 : 5 },
+    (_, index) => {
+      // Últimas páginas
+      if (currentPage > lastPage - 3) {
+        return lastPage < 5 ? index + 2 : lastPage - (4 - index)
+      }
+      // Páginas centrales
+      if (currentPage > 2) return currentPage + index - 1
+      // Primeras páginas
+      return currentPage + index
+    }
+  )
+
+  return { currentPage, lastPage, goToPage, isPending, rangePages }
 }

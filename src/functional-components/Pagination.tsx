@@ -8,37 +8,78 @@ import { Arrow } from '@/assets/icons/svg'
  * @see usePagination
  */
 export default function Pagination (): React.ReactElement {
-  const { page, lastPage, goToPage } = usePagination()
+  const { currentPage, lastPage, goToPage, rangePages } = usePagination()
 
   return (
-    <nav aria-label='Page navigation' className='flex justify-center gap-4 my-6'>
+    <nav aria-label='Page navigation' className='flex justify-center gap-2 my-6'>
       <button
         type='button'
-        disabled={page === 1}
-        onClick={() => goToPage(page - 1)}
-        className='flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        disabled={currentPage === 1}
+        onClick={() => goToPage(currentPage - 1)}
+        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
       >
         <span className='w-full p-2'>
           <Arrow />
         </span>
       </button>
-      <ul className='flex gap-2 overflow-x-auto max-w-40 md:max-w-60 lg:max-w-110'>
-        {Array.from({ length: lastPage }, (_, index) => (
+
+      <ul className='flex gap-2'>
+
+        {currentPage > 1 && (
+          <li
+            key='1'
+            onClick={() => goToPage(1)}
+            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            ${currentPage === 1
+              ? 'bg-primary-200 text-white'
+              : ''
+            }`}
+          > 1 </li>
+        )}
+
+        {currentPage > 3 && ( <li className='self-end'>...</li> )}
+
+        {rangePages.map((page, index) => (
           <li
             key={index}
-            onClick={() => goToPage(index + 1)}
+            onClick={() => goToPage(page)}
             className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
-            ${page === index + 1 ? 'bg-primary-200 text-white' : ''}`}
+            ${currentPage === page
+              ? 'bg-primary-200 text-white'
+              : ''
+            }`}
           >
-            {index + 1}
+            {page}
           </li>
         ))}
+
+        {currentPage < lastPage - 4 && (
+          <li className='self-end'>...</li>
+        )}
+
+        {lastPage > 1 &&
+          lastPage !== currentPage &&
+          lastPage !== 1 &&
+          currentPage < lastPage - 3 && (
+          <li
+            key={lastPage}
+            onClick={() => goToPage(lastPage)}
+            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            ${currentPage === lastPage
+              ? 'bg-primary-200 text-white'
+              : ''
+            }`}
+          >
+            {lastPage}
+          </li>
+        )}
       </ul>
+
       <button
         type='button'
-        disabled={page === lastPage}
-        onClick={() => goToPage(page + 1)}
-        className='flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        disabled={currentPage === lastPage}
+        onClick={() => goToPage(lastPage)}
+        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
       >
         <span className='rotate-180 w-full p-2'>
           <Arrow />
