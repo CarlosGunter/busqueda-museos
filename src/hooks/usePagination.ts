@@ -73,7 +73,7 @@ export function usePagination (): usePaginationReturn {
     })
 
     // Hacer scroll hacia la lista de museos
-    // window.location.href = '#list-museums'
+    window.location.href = '#list-museums'
   }
 
   // Calcular el arreglo de páginas a mostrar
