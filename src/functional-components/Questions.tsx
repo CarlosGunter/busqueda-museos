@@ -29,7 +29,7 @@ export default function Questions (): React.ReactElement {
   const { handleSubmit, isPending } = useFormQuestions()
 
   return (
-    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 overflow-x-hidden md:w-fit md:mx-0 md:my-2 md:sticky md:top-0 md:z-10 md:overflow-y-auto md:max-h-dvh md:no-scrollbar lg:w-full'>
+    <div className='grid place-items-center mx-auto max-w-100 p-4 rounded-xl mb-6 overflow-x-hidden md:w-150 md:mx-0 md:my-2 md:sticky md:top-0 md:z-10 md:overflow-y-auto md:max-h-dvh md:no-scrollbar lg:w-full'>
       <form className='grid gap-5 w-full' onSubmit={handleSubmit}>
         <DropDown
           options={DISCIPLINE_VALUES}

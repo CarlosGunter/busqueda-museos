@@ -13,7 +13,10 @@ export default function ListOfMuseums (): React.ReactElement {
   const { museums } = useListStore(state => state)
 
   return (
-    <main className='grid gap-4 p-2 md:w-fit lg:min-w-[700px]' id='list-museums'>
+    <main
+      className='grid gap-4 p-2 md:w-full lg:min-w-[700px]'
+      id='list-museums'
+    >
       {(museums.length > 0)
         ? (
             museums.map((museum) => (
