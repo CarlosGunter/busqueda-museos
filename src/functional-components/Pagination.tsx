@@ -25,9 +25,9 @@ export default function Pagination (): React.ReactElement {
 
       <ul className='flex gap-2'>
 
-        {currentPage > 1 && (
+        {!rangePages.includes(1) && (
           <li
-            key='1'
+            key={1}
             onClick={() => goToPage(1)}
             className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
             ${currentPage === 1
@@ -37,11 +37,11 @@ export default function Pagination (): React.ReactElement {
           > 1 </li>
         )}
 
-        {currentPage > 3 && ( <li className='self-end'>...</li> )}
+        {rangePages[0] > 2 && ( <li className='self-end'>...</li> )}
 
-        {rangePages.map((page, index) => (
+        {rangePages.map((page) => (
           <li
-            key={index}
+            key={page}
             onClick={() => goToPage(page)}
             className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
             ${currentPage === page
@@ -53,14 +53,11 @@ export default function Pagination (): React.ReactElement {
           </li>
         ))}
 
-        {currentPage < lastPage - 4 && (
+        {(rangePages.at(-1) ?? lastPage) < lastPage - 1 && (
           <li className='self-end'>...</li>
         )}
 
-        {lastPage > 1 &&
-          lastPage !== currentPage &&
-          lastPage !== 1 &&
-          currentPage < lastPage - 3 && (
+        {!rangePages.includes(lastPage) && lastPage !== 1 && (
           <li
             key={lastPage}
             onClick={() => goToPage(lastPage)}
