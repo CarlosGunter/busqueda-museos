@@ -16,7 +16,7 @@ export default function Pagination (): React.ReactElement {
         type='button'
         disabled={currentPage === 1}
         onClick={() => goToPage(currentPage - 1)}
-        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
       >
         <span className='w-full p-2'>
           <Arrow />
@@ -76,7 +76,7 @@ export default function Pagination (): React.ReactElement {
         type='button'
         disabled={currentPage === lastPage}
         onClick={() => goToPage(lastPage)}
-        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer'
+        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
       >
         <span className='rotate-180 w-full p-2'>
           <Arrow />
