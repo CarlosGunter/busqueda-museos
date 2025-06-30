@@ -11,25 +11,28 @@ export default function Pagination (): React.ReactElement {
   const { currentPage, lastPage, goToPage, rangePages } = usePagination()
 
   return (
-    <nav aria-label='Page navigation' className='flex justify-center gap-2 my-6'>
+    <nav
+      aria-label='Page navigation'
+      className='flex justify-center items-center gap-2 my-6'
+    >
       <button
         type='button'
         disabled={currentPage === 1}
         onClick={() => goToPage(currentPage - 1)}
-        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
+        className='flex shrink-0 items-center justify-center size-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
       >
         <span className='w-full p-2'>
           <Arrow />
         </span>
       </button>
 
-      <ul className='flex gap-2'>
+      <ul className='flex gap-2 flex-wrap justify-center'>
 
         {!rangePages.includes(1) && (
           <li
             key={1}
             onClick={() => goToPage(1)}
-            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            className={`flex shrink-0 items-center justify-center size-8 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer md:size-10
             ${currentPage === 1
               ? 'bg-primary-200 text-white'
               : ''
@@ -43,7 +46,7 @@ export default function Pagination (): React.ReactElement {
           <li
             key={page}
             onClick={() => goToPage(page)}
-            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            className={`flex shrink-0 items-center justify-center size-8 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer md:size-10
             ${currentPage === page
               ? 'bg-primary-200 text-white'
               : ''
@@ -61,7 +64,7 @@ export default function Pagination (): React.ReactElement {
           <li
             key={lastPage}
             onClick={() => goToPage(lastPage)}
-            className={`flex shrink-0 items-center justify-center w-10 h-10 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer
+            className={`flex shrink-0 items-center justify-center size-8 rounded-full border border-primary-200 hover:bg-primary-300 text-primary-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer md:size-10
             ${currentPage === lastPage
               ? 'bg-primary-200 text-white'
               : ''
@@ -76,7 +79,7 @@ export default function Pagination (): React.ReactElement {
         type='button'
         disabled={currentPage === lastPage}
         onClick={() => goToPage(lastPage)}
-        className='hidden md:flex shrink-0 items-center justify-center w-10 h-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
+        className='flex shrink-0 items-center justify-center size-10 rounded-full hover:border border-primary-200 hover:bg-primary-300 text-accent-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-accent-100 focus:ring-offset-2 cursor-pointer disabled:opacity-40 disabled:cursor-auto disabled:hover:bg-inherit disabled:hover:border-none disabled:hover:text-inherit'
       >
         <span className='rotate-180 w-full p-2'>
           <Arrow />
